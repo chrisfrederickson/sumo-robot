@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <title>Sheet Music to Audino Buzzer</title>
+        <script src="http://code.jquery.com/jquery-2.1.0.js"></script>
+    </head>
+    <body>
+        <div id="att">
+            <input id="att_time" type="text" placeholder="Time Signature" value="4/4"/>
+            <input id="att_bpm" type="number" placeholder="Tempo (Beats/Minute)" value="100" min="20" max="300"/>
+            <button id="click" onclick="edit()">Edit</button>
+            <button id="click" onclick="generate()">Generate Code</button><br>
+            <i>Hint: Note input consists of a pitch and duration. Pitch is a key, like G5 or G_SHARP5, the G note on the fifth octave. Duration is a beat, like quarter (1/4) or eighth (1/8). Rests are defined as the pitch being 'rest'</i>
+        </div><br><br>
+        <div id="main"></div>
+        <div id="out" style='border:solid 1px black;font-family:monospace;'></div>
+        <script>
+            data = [];
+            $('#out').toggle(1);
+            newMeasure();
+            function newMeasure() {
+                data.push([]);
+                $('#main').append("<div id='measure"+getMeasures()+"'>M"+(getMeasures()+1)+"</div><button onclick='newNote("+getMeasures()+")'>New Note</button><button onclick='newMeasure()'>New Measure</button><hr>");
+                newNote();
+            }
+            function getMeasures() {
+                return data.length-1;   
+            }
+            function newNote(measure, note) {
+                if(measure === undefined) {
+                    measure = getMeasures();
+                } 
+                if(note === undefined) {
+                    note = getNotes(measure);
+                }
+                data[measure][getNotes(measure)] = {note: "G3", length:"1/8"};  
+                $('#measure'+measure).append("<div class='note' data-note='G3' data-length='1/8'><input class='noteinput' value='G3' placeholder='note'/><input class='lengthinput' value='1/8' placeholder='length'/></div>");
+                $('.noteinput, .lengthinput').off().on('input', function() {
+                   save();
+                });
+            }
+            function getNotes(m) {
+                return data[m].length;   
+            }
+            function save() {
+               for(i=0;i<getMeasures()+1;i++) {
+                    var el = $('#measure'+i);
+                    $("#measure"+i+" .note").each(function(n, el) {
+                        $(el).attr('data-note', $(el).find(".noteinput").val());
+                        $(el).attr('data-length', $(el).find(".lengthinput").val());
+
+                        data[i][n] = {note: $(el).attr('data-note'), length: $(el).attr('data-length')};  
+                   });
+               }
+            }
+            function edit() {
+                $('#main').show(500);
+                $('#out').hide(500);
+            }
+            function generate() {
+                $('#main').hide(500);
+                $('#out').show(500);
+                //TODO GENERATE OUT
+                /*
+                    100 bpm in 4/4
+                    1.67 bps
+                    
+                    1/1 note is 2.4s
+                    1/2 note is 1.2
+                    1/4 note is .6
+                    1/8 note is .3
+                    1/16 note is .15
+                    
+                    100     B
+                    ---  = ---
+                    .6      y
+                    
+                    1/(100/.6/B)
+                */
+                bpm = $('#att_bpm').val();
+                time = $('#att_time').val(); //Only 4/4
+                //MS
+                quarter = Math.round(1000*1/(bpm/60)); // Length of a quarter note
+                
+                notecounter = 0;
+                notearray = "<br>unsigned char note[MELODY_LENGTH] = {";
+                lengtharray = "};<br><br>// Measured in MS<br>unsigned int duration[MELODY_LENGTH] ={";
+                for(i=0;i<getMeasures()+1;i++) {
+                    var el = $('#measure'+i);
+                    $("#measure"+i+" .note").each(function(n, e) {
+                        notecounter++;
+                        note = $(e).attr('data-note');
+                        if(note.toLowerCase() == "rest")
+                            notearray += "SILENT_NOTE, "; 
+                        else
+                            notearray += "NOTE_"+note.substring(0, note.length-1).toUpperCase()+"("+note.substring(note.length-1,note.length)+"),";
+                        
+                        length = $(e).attr('data-length');
+                        lout = 0;
+                        switch(length) {
+                            case "1/1":
+                                lout = quarter*4;
+                                break;
+                            case "1/2":
+                                lout = quarter*2;
+                                break;
+                            case "1/4":
+                                lout = quarter;
+                                break;
+                            case "1/8":
+                                lout = quarter/2;
+                                break;
+                            case "1/16":
+                                lout = quarter/4;
+                                break;
+                        }
+                        lengtharray += Math.round(lout)+",";
+                    });
+                    notearray+="<br>";
+                    lengtharray+="<br>";
+                }
+                end = "#define MELODY_LENGTH "+notecounter;
+                //TODO SUB-1
+                $('#out').html(end+notearray.substring(0,notearray.length-5)+lengtharray.substring(0,lengtharray.length-5)+"<br>};");
+                return (end+notearray.substring(0,notearray.length-5)+lengtharray.substring(0,lengtharray.length-5)+"<br>};");
+            }
+        </script>
+    </body>
+
+</html>
