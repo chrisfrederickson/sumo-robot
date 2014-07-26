@@ -7,11 +7,11 @@
 #define QTR_THRESHOLD 1000 // microseconds
 
 // these might need to be tuned for different motor types
-#define REVERSE_SPEED 200 // 0 is stopped, 400 is full speed
-#define TURN_SPEED 200
+#define REVERSE_SPEED 400 // 0 is stopped, 400 is full speed
+#define TURN_SPEED 400
 #define FORWARD_SPEED 400
-#define REVERSE_DURATION 100 // ms 
-#define TURN_DURATION 300 // ms 
+#define REVERSE_DURATION 400 // ms 
+#define TURN_DURATION 400 // ms 
 
 // POKêMON CHAMPION MUSIC 
 #define MELODY_LENGTH 95 
@@ -84,26 +84,29 @@ void loop() {
  } 
 
   if(currentDir == 'R') {
-    if(currentDelay < REVERSE_DURATION) { 
-      motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
-    } else if(currentDelay < REVERSE_DURATION + TURN_DURATION) { 
-      motors.setSpeeds(TURN_SPEED, -TURN_SPEED);
-    } else { 
-      motors.setSpeeds(FORWARD_SPEED, FORWARD_SPEED);
-      currentDir = 'F'; 
-      currentDelay = 0;
-    }
-    currentDelay++;
-    } else if(currentDir == 'L') {
+    for (int i = 0; currentDelay < REVERSE_DURATION + TURN_DURATION; currentDelay++) {
       if(currentDelay < REVERSE_DURATION) { 
         motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
-      } else if(currentDelay < REVERSE_DURATION + TURN_DURATION) {
-        motors.setSpeeds(-TURN_SPEED, TURN_SPEED);
+      } else if(currentDelay < REVERSE_DURATION + TURN_DURATION) { 
+        motors.setSpeeds(TURN_SPEED, -TURN_SPEED);
       } else { 
-        motors.setSpeeds(FORWARD_SPEED, FORWARD_SPEED); 
+        motors.setSpeeds(FORWARD_SPEED, FORWARD_SPEED);
         currentDir = 'F'; 
-        currentDelay = 0; 
-      } currentDelay++; 
+        currentDelay = 0;
+      }
+    }
+    
+    } else if(currentDir == 'L') {
+      for (int i = 0; currentDelay < REVERSE_DURATION + TURN_DURATION; currentDelay++) {
+        if(currentDelay < REVERSE_DURATION) { 
+          motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
+        } else if(currentDelay < REVERSE_DURATION + TURN_DURATION) {
+          motors.setSpeeds(-TURN_SPEED, TURN_SPEED);
+        } else { 
+          motors.setSpeeds(FORWARD_SPEED, FORWARD_SPEED); 
+          currentDir = 'F'; 
+          currentDelay = 0; 
+        } currentDelay++; 
+      }
     }
 }
-
