@@ -8,13 +8,14 @@
 #include "strategies.h"
 
 void setup(){
-  
+  Serial.begin(115200);
 }
 
 void loop(){
-  strategy_func cur_strategy = 0;
+  strategy_func cur_strategy = (strategy_func)0;
   sensors_t sens;
   // Filled
-  notastrategy(sens,cur_strategy);
+  notastrategy(sens,&cur_strategy);
+  //Serial.println((int)&notastrategy_action);
   cur_strategy(sens);
 }
