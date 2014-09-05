@@ -19,12 +19,15 @@
         Tasks to complete
         [ ] Where can I find the specs for the voltage tester?
         [ ] For the accel, which direction is "X"?
-        [ ] Is the external LSM library included with the examples?
-        [ ] If not, is this library needed? What's up with LSM303.h and Wire.h
+        [X] Is the external LSM library included with the examples? 
+        No, it must be downloaded separately
+        [X] If not, is this library needed? What's up with LSM303.h and Wire.h
+        They must be included
+        Wire.h is actually an included Arduino Library
         [ ] Calibrate values
         [ ] Angle of Incidence math
         [X] Discover exactly what versino of the accel/magne that is available: LSM303DLHC (http://www.pololu.com/catalog/product/2124)
-        [ ] There's probably other stuff to be done, like the voltage regulator specs
+        [ ] There's probably other stuff to be done
         
         https://github.com/pololu/lsm303-arduino 
         
@@ -46,9 +49,9 @@ LSM303 compass;
 typedef struct sensors_t_ {
   //commented with suggested types instead
   unsigned int ir[6];
-  float acc[3];
-  //float acc[2]
-  float comp[3];
+  //float acc[3];
+  float acc[2]
+  //float comp[3];
   //float comp
   bool pushbutton;
   float vbat;
