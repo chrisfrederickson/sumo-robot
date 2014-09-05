@@ -5,6 +5,7 @@
 #include <ZumoReflectanceSensorArray.h>
 #include "types.h"
 //#include "drivetrain.cpp"
+#include "sensors_c.h"
 #include "strategies.h"
 
 void setup(){
