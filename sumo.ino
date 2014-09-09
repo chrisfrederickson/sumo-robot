@@ -4,19 +4,27 @@
 #include <QTRSensors.h>
 #include <ZumoReflectanceSensorArray.h>
 #include "types.h"
-//#include "drivetrain.cpp"
 #include "sensors_c.h"
-#include "strategies.h"
+#include "notastrategy.h"
+#include "wallavoidance.h"
+
+#define TICK_LENGTH 10 //In milliseconds
 
 void setup(){
   Serial.begin(115200);
+  unsigned long time;
 }
 
+
+
 void loop(){
+  time = millis()
   strategy_func cur_strategy = (strategy_func)0;
   sensors_t sens;
   // Filled
   notastrategy(sens,&cur_strategy);
+  wallavoidance(sens,&cur_strategy);
   //Serial.println((int)&notastrategy_action);
   cur_strategy(sens);
+  while((millis - time) < TICK_LENGTH){}
 }
