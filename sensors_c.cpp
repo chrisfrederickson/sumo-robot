@@ -41,6 +41,8 @@
 #define CRB_REG_M_2_5GAUSS 0x60 // CRB_REG_M value for magnetometer +/-2.5 gauss full scale
 #define CRA_REG_M_220HZ 0x1C // CRA_REG_M value for magnetometer 220 Hz update rate
 
+#define RA_SIZE 3  // number of readings to include in running average of accelerometer readings
+
 //sensors_c.cpp:46: error: 'ZumoReflectanceSensorArray' does not name a type
 //sensors_c.cpp:48: error: 'Pushbutton' does not name a type
 //sensors_c.cpp:50: error: 'LSM303' does not name a type
@@ -75,6 +77,26 @@ typedef struct sensors_t {
 //sensors_c.cpp:79: error: class 'Accelerometer' does not have any field named 'ra_x'
 //sensors_c.cpp:79: error: 'RA_SIZE' was not declared in this scope
 //sensors_c.cpp:79: error: class 'Accelerometer' does not have any field named 'ra_y'
+template <typename T> 
+class RunningAverage
+{
+  public:
+    RunningAverage(void);
+    RunningAverage(int);
+    ~RunningAverage();
+    void clear();
+    void addValue(T);
+    T getAverage() const;
+    void fillValue(T, int);
+  protected:
+    int _size;
+    int _cnt;
+    int _idx;
+    T _sum;
+    T * _ar;
+    static T zero;
+};
+
 class Accelerometer : public LSM303 {
   typedef struct acc_data_xy {
     unsigned long timestamp;
@@ -94,6 +116,8 @@ class Accelerometer : public LSM303 {
     float dir_xy() const;
   private:
     acc_data_xy last;
+    RunningAverage<int> ra_x;
+    RunningAverage<int> ra_y;  
 };
 Accelerometer accelerometer;
 //sensors_c.cpp: In function 'void startSensors()':
