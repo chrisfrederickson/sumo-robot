@@ -54,6 +54,7 @@ ZumoReflectanceSensorArray sensors(QTR_NO_EMITTER_PIN);
 Pushbutton button(ZUMO_BUTTON); // pushbutton on pin 12
 //FIXME error: 'LSM303' does not name a type
 LSM303 compass;
+int loop_start_time;
 
 typedef struct sensors_t {
   //commented with suggested types instead
@@ -71,6 +72,9 @@ typedef struct sensors_t {
   int slip; //bool
   int angleOfIncidence;
 } sensors_t;
+
+sensors_t s;
+
 // Accelerometer Class -- extends the LSM303 Library to support reading and averaging the x-y acceleration
 // vectors from the onboard LSM303DLHC accelerometer/magnetometer
 //sensors_c.cpp: In constructor 'Accelerometer::Accelerometer()':
@@ -155,7 +159,7 @@ void startSensors() {
   compass.writeReg(LSM303::CRA_REG_M, CRA_REG_M_220HZ); // 220 Hz compass update rate
 
   //TODO How much calibration do we really need to do for a useless sensor? Adjust num;
-  for(index = 0; index < CALIBRATION_SAMPLES; index ++) {
+  for(int index = 0; index < CALIBRATION_SAMPLES; index ++) {
     // Take a reading of the magnetic vector and store it in compass.m
     compass.read();
     running_min.x = min(running_min.x, compass.m.x);
@@ -192,22 +196,24 @@ void loopSensors() {
   loop_start_time = millis();
   accelerometer.readAcceleration(loop_start_time); 
   //Raw Data
-  sensors_t.ir = sensor_values;
+  for(int i = 0; i < NUM_SENSORS; i++) {
+    s.ir[i] = sensor_values[i];
+  }
   //TODO Z or change struct
-  sensors_t.acc = accelerometer.getAcceleration();
+  s.acc = accelerometer.getAcceleration();
   //FIXME One int, not 3
-  sensors_t.comp = averageHeading();
-  sensors_t.pushbutton = button.isPressed();
+  s.comp = averageHeading();
+  s.pushbutton = button.isPressed();
   //TODO Look up how to do that
-  sensors_t.vbat = 0;
+  s.vbat = 0;
   //Parse Data
-  sensors_t.contact = sensors_t.acc[0] > ACC_THRESHOLD;
-  sensors_t.contactLeft = sensors_t.acc[1] > ACC_THRESHOLD;
-  sensors_t.lineLeft = sensor_values[0] < QTR_THRESHOLD;
-  sensors_t.lineRight = sensor_values[5] < QTR_THRESHOLD;
-  sensors_t.slip = sensors_t.acc[0] > SLIP_THRESHOLD;
+  s.contact = sensors_t.acc[0] > ACC_THRESHOLD;
+  s.contactLeft = sensors_t.acc[1] > ACC_THRESHOLD;
+  s.lineLeft = sensor_values[0] < QTR_THRESHOLD;
+  s.lineRight = sensor_values[5] < QTR_THRESHOLD;
+  s.slip = sensors_t.acc[0] > SLIP_THRESHOLD;
   //HMM - Just made something up. In theory some sort of trigonometric expression should correctly find the bot.
-  sensors_t.angleOfIncidence = accelerometer.dir_xy(); //In radians
+  s.angleOfIncidence = accelerometer.dir_xy(); //In radians
 }
 
 /***
