@@ -3,6 +3,7 @@
 #include <Pushbutton.h>
 #include <QTRSensors.h>
 #include <ZumoReflectanceSensorArray.h>
+#include <LSM303.h>
 #include "types.h"
 #include "sensors_c.h"
 #include "notastrategy.h"
