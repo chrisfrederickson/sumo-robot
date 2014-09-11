@@ -3,7 +3,7 @@
 
 typedef struct sensors_t {
   unsigned int ir[6];
-  float acc[3];
+  int acc[2];
   float comp[3];
   int pushbutton;
   float vbat;

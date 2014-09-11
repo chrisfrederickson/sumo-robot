@@ -60,9 +60,9 @@ typedef struct sensors_t {
   //commented with suggested types instead
   unsigned int ir[6];
   //float acc[3];
-  float acc[2];
+  int acc[2];
   //float comp[3];
-  //float comp
+  float comp;
   int pushbutton; //bool
   float vbat;
   int contact; //bool
@@ -115,7 +115,8 @@ class Accelerometer : public LSM303 {
     void enable(void);
     void getLogHeader(void);
     void readAcceleration(unsigned long timestamp);
-    int* getAcceleration();
+    int getXAcceleration();
+    int getYAcceleration();
     float len_xy() const;
     float dir_xy() const;
   private:
@@ -200,7 +201,8 @@ void loopSensors() {
     s.ir[i] = sensor_values[i];
   }
   //TODO Z or change struct
-  s.acc = accelerometer.getAcceleration();
+  s.acc[0] = accelerometer.getXAcceleration();
+  s.acc[1] = accelerometer.getYAcceleration();
   //FIXME One int, not 3
   s.comp = averageHeading();
   s.pushbutton = button.isPressed();
@@ -248,9 +250,11 @@ void loopSensors() {
 //  sensors_c.cpp: At global scope:
 //sensors_c.cpp:168: error: prototype for 'int* Accelerometer::getAcceleration(long unsigned int)' does not match any in class 'Accelerometer'
 //sensors_c.cpp:84: error: candidate is: int* Accelerometer::getAcceleration()
-  int* Accelerometer::getAcceleration(unsigned long timestamp) {
-       int foo[2] = {last.x, last.y};
-       return foo;
+  int Accelerometer::getXAcceleration() {
+    return last.x;
+  }
+  int Accelerometer::getYAcceleration() {
+    return last.x;
   }
 //  sensors_c.cpp: In member function 'void Accelerometer::readAcceleration(long unsigned int)':
 //sensors_c.cpp:173: error: 'readAcc' was not declared in this scope

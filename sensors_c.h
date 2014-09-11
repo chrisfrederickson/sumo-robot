@@ -2,11 +2,12 @@
 #define STRATEGIES_H
 void startSensors();
 void loopSensors();
+float averageHeading();
 typedef struct sensors_t_ {
   //commented with suggested types instead
   unsigned int ir[6];
   //float acc[3];
-  float acc[2]
+  int acc[2]
   //float comp[3];
   //float comp
   int pushbutton; //bool
