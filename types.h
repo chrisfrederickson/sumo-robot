@@ -4,7 +4,7 @@
 typedef struct sensors_t {
   unsigned int ir[6];
   int acc[2];
-  float comp[3];
+  float comp;
   int pushbutton;
   float vbat;
   int contact;

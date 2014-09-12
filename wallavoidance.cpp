@@ -43,7 +43,7 @@ void wallavoidance(sensors_t sens,strategy_func* taken_strat){
       }
     case 1:
       *taken_strat = &wallavoidance_actionReverse;
-      if(wallavoidance_tics == 0){
+      if(wallavoidance_ticks == 0){
         wallavoidance_stage == 2;
         wallavoidance_ticks = random(TURN_TICS_MIN, TURN_TICS_MAX);
       }else{
@@ -55,7 +55,7 @@ void wallavoidance(sensors_t sens,strategy_func* taken_strat){
       }else{
         *taken_strat = &wallavoidance_actionTurnLeft;
       }
-      if(wallavoidance_tics == 0) wallavoidance_stage == 0;
+      if(wallavoidance_ticks == 0) wallavoidance_stage == 0;
       break;
     default:
       wallavoidance_stage == 0;
