@@ -6,7 +6,7 @@ unsigned long int lastSI = 0;
 
 // How to take this strategy
 void sideimpactstrategy_action(sensors_t sens){
-//  Serial.println("IMPL!");
+  Serial.println("SIDE IMPACT!");
   leftSide(100);
   rightSide(100);
   return;

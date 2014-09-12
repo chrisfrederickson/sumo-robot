@@ -4,7 +4,7 @@
 
 // How to take this strategy
 void pushing_action(sensors_t sens){
-//  Serial.println("IMPL!");
+  Serial.println("Push!");
   leftSide(100);
   rightSide(100);
   return;

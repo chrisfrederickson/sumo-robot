@@ -5,7 +5,7 @@
 #include <Wire.h>
 #include "types.h"
 #include "sensors_c.h"
-
+#include <Arduino.h>
 /***
     Dev Notes:
         -Acceleration seems to read only in X,Y directions. I guess Z 
@@ -53,6 +53,8 @@ Pushbutton button(ZUMO_BUTTON); // pushbutton on pin 12
 LSM303 compass;
 int loop_start_time;
 
+int acc_bias_x,acc_bias_y;
+
 //typedef struct sensors_t {
 //  //commented with suggested types instead
 //  unsigned int ir[6];
@@ -70,7 +72,7 @@ int loop_start_time;
 //  int angleOfIncidence;
 //} sensors_t;
 
-sensors_t s;
+
 
 // Accelerometer Class -- extends the LSM303 Library to support reading and averaging the x-y acceleration
 // vectors from the onboard LSM303DLHC accelerometer/magnetometer
@@ -122,55 +124,63 @@ Accelerometer accelerometer;
 void startSensors() {
   Wire.begin();
    // Initiate Accelerometer
-//  accelerometer.init();
+  accelerometer.init();
   accelerometer.enable();
-  LSM303::vector<int16_t> running_min = {32767, 32767, 32767}, running_max = {-32767, -32767, -32767};
-  Serial.begin(9600);
+//  accelerometer.setTimeout(3);
+//  LSM303::vector<int16_t> running_min = {32767, 32767, 32767}, running_max = {-32767, -32767, -32767};
    // Initiate LSM303
-  compass.init();
-  // Enables accelerometer and magnetometer
-  compass.enableDefault();
-  compass.writeReg(LSM303::CRB_REG_M, CRB_REG_M_2_5GAUSS); // +/- 2.5 gauss sensitivity to hopefully avoid overflow problems
-  compass.writeReg(LSM303::CRA_REG_M, CRA_REG_M_220HZ); // 220 Hz compass update rate
-  //TODO How much calibration do we really need to do for a useless sensor? Adjust num;
+//  compass.init();
+//  // Enables accelerometer and magnetometer
+//  compass.enableDefault();
+//  compass.writeReg(LSM303::CRB_REG_M, CRB_REG_M_2_5GAUSS); // +/- 2.5 gauss sensitivity to hopefully avoid overflow problems
+//  compass.writeReg(LSM303::CRA_REG_M, CRA_REG_M_220HZ); // 220 Hz compass update rate
+//  //TODO How much calibration do we really need to do for a useless sensor? Adjust num;
+  int accum_x,accum_y;
+  accum_x = 0;
+  accum_y = 0;
   for(int index = 0; index < CALIBRATION_SAMPLES; index ++) {
     // Take a reading of the magnetic vector and store it in compass.m
-    compass.read();
-    running_min.x = min(running_min.x, compass.m.x);
-    running_min.y = min(running_min.y, compass.m.y);
-    running_max.x = max(running_max.x, compass.m.x);
-    running_max.y = max(running_max.y, compass.m.y);
+    accelerometer.readAcceleration(millis());
+    accum_x += accelerometer.getXAcceleration();
+    accum_y += accelerometer.getYAcceleration();
     Serial.println(index);
     delay(50);
   }
-  // Set calibrated values to compass.m_max and compass.m_min
-  compass.m_max.x = running_max.x;
-  compass.m_max.y = running_max.y;
-  compass.m_min.x = running_min.x;
-  compass.m_min.y = running_min.y;
+  accum_x /= CALIBRATION_SAMPLES;
+  accum_y /= CALIBRATION_SAMPLES;
+  acc_bias_x = accum_x;
+  acc_bias_y = accum_y;
+//  // Set calibrated values to compass.m_max and compass.m_min
+//  compass.m_max.x = running_max.x;
+//  compass.m_max.y = running_max.y;
+//  compass.m_min.x = running_min.x;
+//  compass.m_min.y = running_min.y;
 
 } 
-void loopSensors() {
-  sensors.read(sensor_values);
+void loopSensors(sensors_t* s) {
   loop_start_time = millis();
+  sensors.read(sensor_values);
+  //Serial.println("hERE!!!");
   accelerometer.readAcceleration(loop_start_time); 
   //Raw Data
   for(int i = 0; i < NUM_SENSORS; i++) {
-    s.ir[i] = sensor_values[i];
+    s->ir[i] = 100-sensor_values[i]/20;
   }
-  s.acc[0] = accelerometer.getXAcceleration();
-  s.acc[1] = accelerometer.getYAcceleration();
-  s.comp = averageHeading();
-  s.pushbutton = button.isPressed();
-  s.vbat = 0;
+  //Serial.println("hERE!");
+  s->acc[0] = accelerometer.getXAcceleration()-acc_bias_x;
+  s->acc[1] = accelerometer.getYAcceleration()-acc_bias_y;
+  s->comp = 0;
+  //Serial.println("hERE!!");
+  s->pushbutton = button.isPressed();
+  s->vbat = 0;
   //Parse Data
-  s.contact = s.acc[0] > ACC_THRESHOLD;
-  s.contactLeft = s.acc[1] > ACC_THRESHOLD;
-  s.lineLeft = sensor_values[0] < QTR_THRESHOLD;
-  s.lineRight = sensor_values[5] < QTR_THRESHOLD;
-  s.slip = s.acc[0] > SLIP_THRESHOLD;
+  s->contact = s->acc[0] > ACC_THRESHOLD;
+  s->contactLeft = s->acc[1] > ACC_THRESHOLD;
+  s->lineLeft = sensor_values[0] < QTR_THRESHOLD;
+  s->lineRight = sensor_values[5] < QTR_THRESHOLD;
+  s->slip = s->acc[0] > SLIP_THRESHOLD;
   //HMM - Just made something up. In theory some sort of trigonometric expression should correctly find the bot.
-  s.angleOfIncidence = accelerometer.dir_xy(); //In radians
+  s->angleOfIncidence = accelerometer.dir_xy(); //In radians
 }
 
 /***
@@ -198,32 +208,34 @@ void loopSensors() {
     return last.x;
   }
   int Accelerometer::getYAcceleration() {
-    return last.x;
+    return last.y;
   }
   void Accelerometer::readAcceleration(unsigned long timestamp) {
+      //Serial.println("HERE!!!");
       readAcc();
+      //Serial.println("HERE!!!!");
       if(a.x == last.x && a.y == last.y) return;
-          last.timestamp = timestamp;
-          last.x = a.x;
-          last.y = a.y;
-          ra_x.addValue(last.x);
-          ra_y.addValue(last.y);
-          #ifdef LOG_SERIAL
-            Serial.print(last.timestamp);
-            Serial.print(" ");
-            Serial.print(last.x);
-            Serial.print(" ");
-            Serial.print(last.y);
-            Serial.print(" ");
-            Serial.print(len_xy());
-            Serial.print(" ");
-            Serial.print(dir_xy());
-            Serial.print(" | ");
-            Serial.print(sqrt(static_cast<float>(ss_xy_avg())));
-            Serial.print(" ");
-            Serial.print(dir_xy_avg());
-            Serial.println();
-          #endif
+      last.timestamp = timestamp;
+      last.x = a.x;
+      last.y = a.y;
+      ra_x.addValue(last.x);
+      ra_y.addValue(last.y);
+      #ifdef LOG_SERIAL
+      Serial.print(last.timestamp);
+      Serial.print(" ");
+      Serial.print(last.x);
+      Serial.print(" ");
+      Serial.print(last.y);
+      Serial.print(" ");
+      Serial.print(len_xy());
+      Serial.print(" ");
+      Serial.print(dir_xy());
+      Serial.print(" | ");
+      Serial.print(sqrt(static_cast<float>(ss_xy_avg())));
+      Serial.print(" ");
+      Serial.print(dir_xy_avg());
+      Serial.println();
+      #endif
     }
     float Accelerometer::len_xy() const {
         return sqrt(last.x*a.x + last.y*a.y);

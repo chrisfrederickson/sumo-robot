@@ -384,7 +384,6 @@ void LSM303::readAcc(void)
   Wire.write(OUT_X_L_A | (1 << 7));
   last_status = Wire.endTransmission();
   Wire.requestFrom(acc_address, (byte)6);
-
   unsigned int millis_start = millis();
   while (Wire.available() < 6) {
     if (io_timeout > 0 && ((unsigned int)millis() - millis_start) > io_timeout)

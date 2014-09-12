@@ -16,4 +16,5 @@ typedef struct sensors_t {
 } sensors_t;
 
 typedef void (*strategy_func)(sensors_t);
+
 #endif

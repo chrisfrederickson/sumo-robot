@@ -1,7 +1,7 @@
 #ifndef STRATEGIES_H
 #define STRATEGIES_H
 void startSensors();
-void loopSensors();
+void loopSensors(sensors_t*);
 float averageHeading();
 //typedef struct sensors_t_ {
 //  //commented with suggested types instead

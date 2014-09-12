@@ -7,7 +7,7 @@
 
 // How to take this strategy
 void centersit_action(sensors_t sens){
-//  Serial.println("IMPL!");
+  Serial.println("Center Sit!");
   leftSide(0);
   rightSide(0);
   return;

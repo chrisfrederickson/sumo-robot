@@ -4,7 +4,7 @@
 
 // How to take this strategy
 void notastrategy_action(sensors_t sens){
-//  Serial.println("IMPL!");
+  //Serial.println("IMPL!");
   leftSide(100);
   rightSide(100);
   return;
