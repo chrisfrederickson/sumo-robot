@@ -69,6 +69,7 @@
                     1/4 note is .6
                     1/8 note is .3
                     1/16 note is .15
+                    1/32 note is .075
                     
                     100     B
                     ---  = ---
@@ -96,6 +97,7 @@
                         
                         length = $(e).attr('data-length');
                         lout = 0;
+                        lout_total = 0;
                         switch(length) {
                             case "1/1":
                                 lout = quarter*4;
@@ -112,7 +114,11 @@
                             case "1/16":
                                 lout = quarter/4;
                                 break;
+                            case "1/32":
+                                lout = quarter/8;
+                                break;
                         }
+                        lout_total += lout;
                         lengtharray += Math.round(lout)+",";
                     });
                     notearray+="<br>";
@@ -120,8 +126,9 @@
                 }
                 end = "#define MELODY_LENGTH "+notecounter;
                 //TODO SUB-1
-                $('#out').html(end+notearray.substring(0,notearray.length-5)+lengtharray.substring(0,lengtharray.length-5)+"<br>};");
-                return (end+notearray.substring(0,notearray.length-5)+lengtharray.substring(0,lengtharray.length-5)+"<br>};");
+                var htmlout = end+notearray.substring(0,notearray.length-5)+lengtharray.substring(0,lengtharray.length-5)+"<br>};<br>//Song is "+lout_total+" ms";
+                $('#out').html(htmlout);
+                return (htmlout);
             }
         </script>
     </body>

@@ -3,10 +3,10 @@
 #include <Arduino.h>
 
 #define REVERSE_SPEED -100
-#define TURN_SPEED 20
-#define REVERSE_TICKS 70
-#define TURN_TICS_MIN 40
-#define TURN_TICS_MAX 80
+#define TURN_SPEED 100
+#define REVERSE_TICKS 35
+#define TURN_TICS_MIN 20
+#define TURN_TICS_MAX 30
 
 int wallavoidance_stage = 0; //0 idle, 1 reverse, 2 turn
 int wallavoidancelineLeft;
@@ -21,14 +21,14 @@ void wallavoidance_actionReverse(sensors_t sens){
 
 void wallavoidance_actionTurnRight(sensors_t sens){
   Serial.println("Wall right!");
-  leftSide(100);
-  rightSide(TURN_SPEED);
+  leftSide(TURN_SPEED);
+  rightSide(-TURN_SPEED);
 }
 
 void wallavoidance_actionTurnLeft(sensors_t sens){
   Serial.println("Wall left!");
-  leftSide(TURN_SPEED);
-  rightSide(100);
+  leftSide(-TURN_SPEED);
+  rightSide(TURN_SPEED);
 }
 
 // When to take this strategy

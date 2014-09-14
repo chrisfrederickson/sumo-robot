@@ -5,6 +5,8 @@
 #include <Wire.h>
 #include "types.h"
 #include "sensors_c.h"
+
+#include <ZumoBuzzer.h>
 #include <Arduino.h>
 /***
     Dev Notes:
@@ -38,9 +40,12 @@
 #define NUM_SENSORS 6
 #define QTR_THRESHOLD 1000 // microseconds (This is for determining white from black)
 #define ACC_THRESHOLD 1 //In odd units -- this is just something that needs plenty of calibration
+#define CONTACT_FRONT_THRESHOLD 2800
+#define CONTACT_BACK_THRESHOLD 2800
+#define CONTACT_SIDE_THRESHOLD 4000
 #define SLIP_THRESHOLD 2 //In odd units -- this is the acceleration detection for slippage
 
-#define CALIBRATION_SAMPLES 70 // Number of compass readings to take when calibrating
+#define CALIBRATION_SAMPLES 120 // Number of compass readings to take when calibrating
 #define CRB_REG_M_2_5GAUSS 0x60 // CRB_REG_M value for magnetometer +/-2.5 gauss full scale
 #define CRA_REG_M_220HZ 0x1C // CRA_REG_M value for magnetometer 220 Hz update rate
 
@@ -52,8 +57,9 @@ ZumoReflectanceSensorArray sensors(QTR_NO_EMITTER_PIN);
 Pushbutton button(ZUMO_BUTTON); // pushbutton on pin 12
 LSM303 compass;
 int loop_start_time;
+ZumoBuzzer buzzr;
 
-int acc_bias_x,acc_bias_y;
+long acc_bias_x,acc_bias_y;
 
 //typedef struct sensors_t {
 //  //commented with suggested types instead
@@ -135,7 +141,7 @@ void startSensors() {
 //  compass.writeReg(LSM303::CRB_REG_M, CRB_REG_M_2_5GAUSS); // +/- 2.5 gauss sensitivity to hopefully avoid overflow problems
 //  compass.writeReg(LSM303::CRA_REG_M, CRA_REG_M_220HZ); // 220 Hz compass update rate
 //  //TODO How much calibration do we really need to do for a useless sensor? Adjust num;
-  int accum_x,accum_y;
+  long accum_x,accum_y;
   accum_x = 0;
   accum_y = 0;
   for(int index = 0; index < CALIBRATION_SAMPLES; index ++) {
@@ -144,12 +150,27 @@ void startSensors() {
     accum_x += accelerometer.getXAcceleration();
     accum_y += accelerometer.getYAcceleration();
     Serial.println(index);
-    delay(50);
+    delay(15);
   }
-  accum_x /= CALIBRATION_SAMPLES;
-  accum_y /= CALIBRATION_SAMPLES;
-  acc_bias_x = accum_x;
-  acc_bias_y = accum_y;
+//  accum_x /= CALIBRATION_SAMPLES;
+//  accum_y /= CALIBRATION_SAMPLES;
+  acc_bias_x = accum_x / CALIBRATION_SAMPLES;
+  acc_bias_y = accum_y / CALIBRATION_SAMPLES;
+  Serial.print("Accelerometer data taken from ");
+  Serial.print(CALIBRATION_SAMPLES);
+  Serial.print(" samples.");
+  Serial.println("");
+  
+  Serial.print("ACCUM-X: ");
+  Serial.print(accum_x);
+  Serial.print(" ACCUM-Y: ");
+  Serial.print(accum_y);
+  Serial.println("");
+  
+  Serial.print("Here are the offsets: AVG-X: ");
+  Serial.print(acc_bias_x);
+  Serial.print("  AVG-Y: ");
+  Serial.print(acc_bias_y);
 //  // Set calibrated values to compass.m_max and compass.m_min
 //  compass.m_max.x = running_max.x;
 //  compass.m_max.y = running_max.y;
@@ -174,8 +195,42 @@ void loopSensors(sensors_t* s) {
   s->pushbutton = button.isPressed();
   s->vbat = 0;
   //Parse Data
-  s->contact = s->acc[0] > ACC_THRESHOLD;
-  s->contactLeft = s->acc[1] > ACC_THRESHOLD;
+  s->contact = 0;
+  s->contactLeft = 0;
+  if(abs(s->acc[0]) > CONTACT_FRONT_THRESHOLD || abs(s->acc[0]) > CONTACT_BACK_THRESHOLD || abs(s->acc[1]) > CONTACT_SIDE_THRESHOLD) {
+     //Now we figure out which one is the most significant
+    if(abs(s->acc[0]) > abs(s->acc[1])) {
+//       s->contact = 1;
+       s->contactLeft = 0;
+    } else {
+       s->contact = 0;
+       s->contactLeft = 1; 
+    }
+  }
+  if(s->contact) {
+    buzzr.playFrequency(3000,600,15);
+  } if(s->contactLeft) {
+    buzzr.playFrequency(5000,600,15);
+    Serial.print(" ACC-Y: ");
+    Serial.print(s->acc[1]);
+    Serial.println("");
+  }
+//    Serial.print("ACC-X: ");
+  //  Serial.print(accelerometer.getXAcceleration());
+  //  Serial.print(" | ");
+//    Serial.print(s->acc[0]);
+//    Serial.print(" ACC-Y: ");
+  //  Serial.print(accelerometer.getYAcceleration());
+  //  Serial.print(" | ");
+//    Serial.print(s->acc[1]);
+//    Serial.print("  DIR: ");
+//    Serial.print(accelerometer.dir_xy());
+//    Serial.print(" Front/Back Hit? ");
+//    Serial.print(s->contact);
+//    Serial.print(" Side Hit? ");
+//    Serial.print(s->contactLeft);
+//    Serial.println("");
+
   s->lineLeft = sensor_values[0] < QTR_THRESHOLD;
   s->lineRight = sensor_values[5] < QTR_THRESHOLD;
   s->slip = s->acc[0] > SLIP_THRESHOLD;
