@@ -46,14 +46,14 @@ void setup(){
   time = millis();
   Serial.begin(115200);
   startSensors();
-  Serial.println("HERE!!");
+//  Serial.println("HERE!!");
   
   //MUSIC
   currentNote = 0;
   currentDelay = 0;
   while(millis() - time < 5000) {
     float diff = (millis() - time);
-    Serial.println(diff);
+//    Serial.println(diff);
     if(diff == 1126 || diff == 2250 || diff == 3375) {
        buzz.playNote(NOTE_C(3), 250, 15); 
     } else if(diff == 4500) {

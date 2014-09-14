@@ -149,7 +149,7 @@ void startSensors() {
     accelerometer.readAcceleration(millis());
     accum_x += accelerometer.getXAcceleration();
     accum_y += accelerometer.getYAcceleration();
-    Serial.println(index);
+//    Serial.println(index);
     delay(15);
   }
 //  accum_x /= CALIBRATION_SAMPLES;
