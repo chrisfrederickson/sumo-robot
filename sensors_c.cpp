@@ -5,7 +5,7 @@
 #include <Wire.h>
 #include "types.h"
 #include "sensors_c.h"
-
+#define VOLUME 9
 #include <ZumoBuzzer.h>
 #include <Arduino.h>
 /***
@@ -40,8 +40,8 @@
 #define NUM_SENSORS 6
 #define QTR_THRESHOLD 1000 // microseconds (This is for determining white from black)
 #define ACC_THRESHOLD 1 //In odd units -- this is just something that needs plenty of calibration
-#define CONTACT_FRONT_THRESHOLD 2800
-#define CONTACT_BACK_THRESHOLD 2800
+#define CONTACT_FRONT_THRESHOLD 10000
+#define CONTACT_BACK_THRESHOLD 10000
 #define CONTACT_SIDE_THRESHOLD 4000
 #define SLIP_THRESHOLD 2 //In odd units -- this is the acceleration detection for slippage
 
@@ -190,6 +190,10 @@ void loopSensors(sensors_t* s) {
   //Serial.println("hERE!");
   s->acc[0] = accelerometer.getXAcceleration()-acc_bias_x;
   s->acc[1] = accelerometer.getYAcceleration()-acc_bias_y;
+//  Serial.println(accelerometer.a.z);
+//  if (abs(accelerometer.a.z-16000) > 4000){
+//    buzzr.playFrequency(2000,600,VOLUME);
+//  }
   s->comp = 0;
   //Serial.println("hERE!!");
   s->pushbutton = button.isPressed();
@@ -200,7 +204,7 @@ void loopSensors(sensors_t* s) {
   if(abs(s->acc[0]) > CONTACT_FRONT_THRESHOLD || abs(s->acc[0]) > CONTACT_BACK_THRESHOLD || abs(s->acc[1]) > CONTACT_SIDE_THRESHOLD) {
      //Now we figure out which one is the most significant
     if(abs(s->acc[0]) > abs(s->acc[1])) {
-//       s->contact = 1;
+       s->contact = 1;
        s->contactLeft = 0;
     } else {
        s->contact = 0;
@@ -208,9 +212,9 @@ void loopSensors(sensors_t* s) {
     }
   }
   if(s->contact) {
-    buzzr.playFrequency(3000,600,15);
+    buzzr.playFrequency(3000,600,VOLUME);
   } if(s->contactLeft) {
-    buzzr.playFrequency(5000,600,15);
+    buzzr.playFrequency(5000,600,VOLUME);
     Serial.print(" ACC-Y: ");
     Serial.print(s->acc[1]);
     Serial.println("");
