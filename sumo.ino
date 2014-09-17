@@ -20,7 +20,7 @@
 #define PLAY_MUSIC 0 //bool T (1)/F(0)
 #define DONT_MOVE 0 //bool 
 #define MELODY_LENGTH 7
-#define VOLUME 12
+#define VOLUME 15
 unsigned char note[MELODY_LENGTH] = {NOTE_C(3),NOTE_C(3),NOTE_G(3),NOTE_G(3),
 NOTE_A(3),NOTE_A(3),NOTE_G(3)};
 

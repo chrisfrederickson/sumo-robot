@@ -5,7 +5,7 @@
 #include <Wire.h>
 #include "types.h"
 #include "sensors_c.h"
-#define VOLUME 9
+#define VOLUME 15
 #include <ZumoBuzzer.h>
 #include <Arduino.h>
 /***
@@ -212,7 +212,7 @@ void loopSensors(sensors_t* s) {
     }
   }
   if(s->contact) {
-    buzzr.playFrequency(3000,600,VOLUME);
+    //buzzr.playFrequency(3000,600,VOLUME);
   } if(s->contactLeft) {
     buzzr.playFrequency(5000,600,VOLUME);
     Serial.print(" ACC-Y: ");
