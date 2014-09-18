@@ -1,16 +1,16 @@
 #include <ZumoMotors.h>
+#include "drivetrain.h"
 
 ZumoMotors motors;
 
 #define ALPHA 0.82
-
-int oldLeft = 0;
-int oldRight = 0;
+extern int oldLeft = 0;
+extern int oldRight = 0;
 
 // Power is from -100 to 100
 void leftSide(int power){
   oldLeft = int(ALPHA*oldLeft+(1-ALPHA)*power);
-  motors.setLeftSpeed(oldLeft*4);
+  motors.setLeftSpeed(oldLeft*4);  
 }
 
 // Power is from -100 to 100

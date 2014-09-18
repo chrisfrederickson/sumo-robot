@@ -1,42 +1,14 @@
+#include "drivetrain.h"
 #include <QTRSensors.h>
 #include <ZumoReflectanceSensorArray.h>
 #include <Pushbutton.h>
 #include <LSM303.h>
 #include <Wire.h>
 #include "types.h"
-#include "sensors_c.h"
-#define VOLUME 15
 #include <ZumoBuzzer.h>
 #include <Arduino.h>
-/***
-    Dev Notes:
-        -Acceleration seems to read only in X,Y directions. I guess Z 
-            could work, I'd have to look further into the header, but
-            I don't think that is important
-        -From what I've seen, compass does not give three points of data, 
-            just a single heading. There are a few other functions that were
-            provided by examples and put into an array. But it will not be 
-            traditional X, Y, Z points. Currently it's one int- the average heading over ten reads.
-        -Can I find those libraries? I don't think I have them.
-        -Stuff like `contact` needs calibration. What is "X" and "Y" relative to the front of the bot? 
-        
-        Tasks to complete
-        [ ] Where can I find the specs for the voltage tester?
-        [X] For the accel, which direction is "X"? ANS: FRONT
-        [X] Is the external LSM library included with the examples? 
-        No, it must be downloaded separately
-        [X] If not, is this library needed? What's up with LSM303.h and Wire.h
-        They must be included
-        Wire.h is actually an included Arduino Library
-        [ ] Calibrate values
-        [X] Angle of Incidence math
-        [X] Discover exactly what versino of the accel/magne that is available: LSM303DLHC (http://www.pololu.com/catalog/product/2124)
-        [ ] There's probably other stuff to be done
-        [ ] Solve all the syntax issues here
-        
-        https://github.com/pololu/lsm303-arduino 
-        
-***/
+
+
 #define NUM_SENSORS 6
 #define QTR_THRESHOLD 1000 // microseconds (This is for determining white from black)
 #define ACC_THRESHOLD 1 //In odd units -- this is just something that needs plenty of calibration
@@ -51,6 +23,7 @@
 
 #define RA_SIZE 3  // number of readings to include in running average of accelerometer readings
 #define M_PI 3.14159
+#define VOLUME 15
 
 unsigned int sensor_values[NUM_SENSORS];
 ZumoReflectanceSensorArray sensors(QTR_NO_EMITTER_PIN);
@@ -60,25 +33,6 @@ int loop_start_time;
 ZumoBuzzer buzzr;
 
 long acc_bias_x,acc_bias_y;
-
-//typedef struct sensors_t {
-//  //commented with suggested types instead
-//  unsigned int ir[6];
-//  //float acc[3];
-//  int acc[2];
-//  //float comp[3];
-//  float comp;
-//  int pushbutton; //bool
-//  float vbat;
-//  int contact; //bool
-//  int contactLeft; //bool
-//  int lineLeft; //bool
-//  int lineRight; //bool
-//  int slip; //bool
-//  int angleOfIncidence;
-//} sensors_t;
-
-
 
 // Accelerometer Class -- extends the LSM303 Library to support reading and averaging the x-y acceleration
 // vectors from the onboard LSM303DLHC accelerometer/magnetometer
@@ -178,6 +132,8 @@ void startSensors() {
 //  compass.m_min.y = running_min.y;
 
 } 
+extern int oldLeft;
+extern int oldRight;
 void loopSensors(sensors_t* s) {
   loop_start_time = millis();
   sensors.read(sensor_values);
@@ -206,19 +162,23 @@ void loopSensors(sensors_t* s) {
     if(abs(s->acc[0]) > abs(s->acc[1])) {
        s->contact = 1;
        s->contactLeft = 0;
-    } else {
+    } else if(abs(oldLeft - oldRight) < 65) {
        s->contact = 0;
-       s->contactLeft = 1; 
+       s->contactLeft = 1;
     }
   }
   if(s->contact) {
-    //buzzr.playFrequency(3000,600,VOLUME);
+    buzzr.playFrequency(3000,200,VOLUME);
   } if(s->contactLeft) {
-    buzzr.playFrequency(5000,600,VOLUME);
-    Serial.print(" ACC-Y: ");
-    Serial.print(s->acc[1]);
-    Serial.println("");
+    buzzr.playFrequency(6000,200,VOLUME);
+//    Serial.print(" ACC-Y: ");
+//    Serial.print(s->acc[1]);
+//    Serial.println("");
   }
+  Serial.print(s->contact);
+  Serial.print("  ");
+  Serial.print(s->contactLeft);
+  Serial.println("");
 //    Serial.print("ACC-X: ");
   //  Serial.print(accelerometer.getXAcceleration());
   //  Serial.print(" | ");

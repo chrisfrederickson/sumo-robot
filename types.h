@@ -9,6 +9,8 @@ typedef struct sensors_t {
   float vbat;
   int contact;
   int contactLeft;
+  int ignoreContactX;
+  int ignoreContactY;
   int lineLeft;
   int lineRight;
   int slip;

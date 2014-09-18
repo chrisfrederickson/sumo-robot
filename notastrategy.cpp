@@ -5,10 +5,13 @@
 #define MOTORS_SPEED 100
 
 // How to take this strategy
+extern int oldLeft;
 void notastrategy_action(sensors_t sens){
-  //Serial.println("IMPL!");
+  Serial.println("IMPL!");
   leftSide(MOTORS_SPEED);
   rightSide(MOTORS_SPEED);
+  sens.ignoreContactX = 1;
+  sens.ignoreContactY = 1;
   return;
 }
 
