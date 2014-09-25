@@ -10,6 +10,7 @@
 #include "sensors_c.h"
 #include "notastrategy.h"
 #include "wallavoidance.h"
+#include "linefollow.h"
 #include "centersit.h"
 #include "sideImpactStrategy.h"
 #include "pushing.h"
