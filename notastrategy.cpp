@@ -10,8 +10,6 @@ void notastrategy_action(sensors_t sens){
   Serial.println("IMPL!");
   leftSide(MOTORS_SPEED);
   rightSide(MOTORS_SPEED);
-  sens.ignoreContactX = 1;
-  sens.ignoreContactY = 1;
   return;
 }
 

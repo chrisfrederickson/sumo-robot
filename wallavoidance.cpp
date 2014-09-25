@@ -17,23 +17,18 @@ void wallavoidance_actionReverse(sensors_t sens){
   Serial.println("Wall reverse!");
   leftSide(REVERSE_SPEED);
   rightSide(REVERSE_SPEED);
-  sens.ignoreContactX = 1;
 }
 
 void wallavoidance_actionTurnRight(sensors_t sens){
   Serial.println("Wall right!");
   leftSide(TURN_SPEED);
   rightSide(-TURN_SPEED);
-  sens.ignoreContactY = 1;
-  sens.ignoreContactX = 1;
 }
 
 void wallavoidance_actionTurnLeft(sensors_t sens){
   Serial.println("Wall left!");
   leftSide(-TURN_SPEED);
   rightSide(TURN_SPEED);
-  sens.ignoreContactY = 1;
-  sens.ignoreContactX = 1;
 }
 
 // When to take this strategy

@@ -168,9 +168,9 @@ void loopSensors(sensors_t* s) {
     }
   }
   if(s->contact) {
-    buzzr.playFrequency(3000,200,VOLUME);
+    //buzzr.playFrequency(3000,200,VOLUME);
   } if(s->contactLeft) {
-    buzzr.playFrequency(6000,200,VOLUME);
+    //buzzr.playFrequency(6000,200,VOLUME);
 //    Serial.print(" ACC-Y: ");
 //    Serial.print(s->acc[1]);
 //    Serial.println("");

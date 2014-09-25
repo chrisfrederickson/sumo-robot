@@ -18,7 +18,7 @@
 #include <ZumoBuzzer.h>
 
 #define TICK_LENGTH 10 //In milliseconds
-#define PLAY_MUSIC 0 //bool T (1)/F(0)
+#define PLAY_MUSIC 1 //bool T (1)/F(0)
 #define DONT_MOVE 0 //bool 
 #define VOLUME 15
 #define PLAYBACK_SPEED 1
@@ -103,10 +103,6 @@ void setup(){
   buzz.playNote(NOTE_F(4), 250, VOLUME); 
   mainbutton.waitForButton(); 
   buzz.playNote(NOTE_F(4), 80, 9); 
-//  buzz.playNote(NOTE_F(4), 250, 15);
-//  for (int i = 0; i < ENC_MELODY_LENGTH; i++) {
-//    buzz.playNote(enc_note[currentNote], enc_duration[currentNote], 15);
-//  } 
   time = millis();
   Serial.begin(115200);
   startSensors();
