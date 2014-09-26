@@ -20,4 +20,7 @@ typedef struct sensors_t {
 
 typedef void (*strategy_func)(sensors_t);
 
+#define STRATEGY_NORMAL 0xF00D
+#define STRATEGY_PLAN_B 0xBBBB
+
 #endif

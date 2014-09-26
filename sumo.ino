@@ -96,6 +96,8 @@ unsigned int currentDelay;
 
 unsigned long time;
 
+unsigned int currentStrategy = STRATEGY_NORMAL;
+
 ZumoBuzzer buzz;
 Pushbutton mainbutton(ZUMO_BUTTON); // pushbutton on pin 12
 
@@ -113,7 +115,11 @@ void setup(){
   currentDelay = 0;
   while(millis() - time < 5000) {
     float diff = (millis() - time);
-//    Serial.println(diff);
+    if (diff > 50 && mainbutton.isPressed() && currentStrategy != STRATEGY_PLAN_B){
+      currentStrategy = STRATEGY_PLAN_B;
+      buzz.playNote(NOTE_F(5),80,9);
+    }
+    //    Serial.println(diff);
     if(diff == 1126 || diff == 2250 || diff == 3375) {
        buzz.playNote(NOTE_C(3), 250, VOLUME); 
     } else if(diff == 4500) {
@@ -129,10 +135,14 @@ void loop(){
   //Serial.println("BEFORE loopSensors!");
   loopSensors(&sens);
   // Filled
-  notastrategy(sens,&cur_strategy);
-  //test_acc(sens,&cur_strategy);
-  //sideimpactstrategy(sens,&cur_strategy);
-  wallavoidance(sens,&cur_strategy);
+  if (currentStrategy == STRATEGY_NORMAL){
+    notastrategy(sens,&cur_strategy);
+    //test_acc(sens,&cur_strategy);
+    //sideimpactstrategy(sens,&cur_strategy);
+    wallavoidance(sens,&cur_strategy);
+  }else if (currentStrategy == STRATEGY_PLAN_B){
+    // TODO: Fill in something
+  }
   
   //centersit(sens,&cur_strategy);
   //pushing(sens,&cur_strategy);
@@ -146,7 +156,7 @@ void loop(){
   }
   
   //MUSIC
-  if (currentNote < MELODY_LENGTH && !buzz.isPlaying() && PLAY_MUSIC == 1) {
+  if (currentNote < MELODY_LENGTH && !buzz.isPlaying() && PLAY_MUSIC) {
       // play note at max volume
       // VOLUME ON A SCALE OF 0-15
       buzz.playNote(note[currentNote], floor(duration[currentNote]*PLAYBACK_SPEED), VOLUME);
