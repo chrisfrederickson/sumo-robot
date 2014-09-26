@@ -98,6 +98,8 @@ unsigned long time;
 
 unsigned int currentStrategy = STRATEGY_NORMAL;
 
+int strategyTarget = 10000;
+
 ZumoBuzzer buzz;
 Pushbutton mainbutton(ZUMO_BUTTON); // pushbutton on pin 12
 
@@ -141,7 +143,13 @@ void loop(){
     //sideimpactstrategy(sens,&cur_strategy);
     wallavoidance(sens,&cur_strategy);
   }else if (currentStrategy == STRATEGY_PLAN_B){
-    // TODO: Fill in something
+    notastrategy(sens,&cur_strategy);
+    linefollow(sens,&cur_strategy);
+    if (cur_strategy == &notastrategy_action && sens.count >= strategyTarget){
+      currentStrategy = STRATEGY_NORMAL;
+    }else{
+      strategyTarget = sens.count + 250;
+    }
   }
   
   //centersit(sens,&cur_strategy);
