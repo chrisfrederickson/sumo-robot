@@ -15,6 +15,7 @@ typedef struct sensors_t {
   int lineRight;
   int slip;
   int angleOfIncidence;
+  int count;
 } sensors_t;
 
 typedef void (*strategy_func)(sensors_t);

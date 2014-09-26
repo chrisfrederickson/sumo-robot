@@ -134,6 +134,9 @@ void startSensors() {
 } 
 extern int oldLeft;
 extern int oldRight;
+
+long loopCount = 0;
+
 void loopSensors(sensors_t* s) {
   loop_start_time = millis();
   sensors.read(sensor_values);
@@ -168,9 +171,9 @@ void loopSensors(sensors_t* s) {
     }
   }
   if(s->contact) {
-    //buzzr.playFrequency(3000,200,VOLUME);
+//    buzzr.playFrequency(3000,200,VOLUME);
   } if(s->contactLeft) {
-    //buzzr.playFrequency(6000,200,VOLUME);
+//    buzzr.playFrequency(6000,200,VOLUME);
 //    Serial.print(" ACC-Y: ");
 //    Serial.print(s->acc[1]);
 //    Serial.println("");
@@ -198,6 +201,7 @@ void loopSensors(sensors_t* s) {
   s->lineLeft = sensor_values[0] < QTR_THRESHOLD;
   s->lineRight = sensor_values[5] < QTR_THRESHOLD;
   s->slip = s->acc[0] > SLIP_THRESHOLD;
+  s->count = loopCount++;
   //HMM - Just made something up. In theory some sort of trigonometric expression should correctly find the bot.
   s->angleOfIncidence = accelerometer.dir_xy(); //In radians
 }
