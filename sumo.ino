@@ -9,6 +9,7 @@
 #include "sensors_c.h"
 #include "notastrategy.h"
 #include "wallavoidance.h"
+#include "randomNumber.h"
 #include "linefollow.h"
 #include "centersit.h"
 #include "sideImpactStrategy.h"
@@ -16,6 +17,7 @@
 #include "test_acc.h"
 #include <ZumoMotors.h>
 #include <ZumoBuzzer.h>
+
 
 #define TICK_LENGTH 10 //In milliseconds
 #define PLAY_MUSIC 1 //bool T (1)/F(0)
@@ -129,6 +131,17 @@ void setup(){
     }
   }
 }
+ZumoMotors motorx;
+void loop_test_motors() {
+    time = millis();
+    int waits = 0;
+    motorx.setLeftSpeed(400);
+    motorx.setRightSpeed(-400);
+    while((millis() - time) < TICK_LENGTH){waits++;}
+    motorx.setLeftSpeed(0);
+    motorx.setRightSpeed(0);
+    delay(500);
+}
 void loop(){
   //Serial.println("HERE!");
   time = millis();
@@ -151,7 +164,6 @@ void loop(){
       strategyTarget = sens.count + 250;
     }
   }
-  
   //centersit(sens,&cur_strategy);
   //pushing(sens,&cur_strategy);
   //Serial.println((int)&notastrategy_action);
@@ -164,7 +176,7 @@ void loop(){
   }
   
   //MUSIC
-  if (currentNote < MELODY_LENGTH && !buzz.isPlaying() && PLAY_MUSIC) {
+  if (currentNote < MELODY_LENGTH && !buzz.isPlaying() && PLAY_MUSIC == 1) {
       // play note at max volume
       // VOLUME ON A SCALE OF 0-15
       buzz.playNote(note[currentNote], floor(duration[currentNote]*PLAYBACK_SPEED), VOLUME);

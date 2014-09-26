@@ -1,5 +1,6 @@
 #include "types.h"
 #include "drivetrain.h"
+#include "randomNumber.h"
 #include <Arduino.h>
 
 #define REVERSE_SPEED -100
@@ -49,7 +50,7 @@ void wallavoidance(sensors_t sens,strategy_func* taken_strat){
       *taken_strat = &wallavoidance_actionReverse;
       if(wallavoidance_ticks == 0){
         wallavoidance_stage = 2;
-        wallavoidance_ticks = random(TURN_TICS_MIN, TURN_TICS_MAX);
+        wallavoidance_ticks = getRandom(TURN_TICS_MIN, TURN_TICS_MAX);
       }else{
         break;
       }
