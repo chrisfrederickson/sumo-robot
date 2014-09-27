@@ -3,7 +3,7 @@
 
 ZumoMotors motors;
 
-#define ALPHA 0.85
+#define ALPHA 0.75
 extern int oldLeft = 0;
 extern int oldRight = 0;
 

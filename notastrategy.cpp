@@ -3,6 +3,7 @@
 #include <Arduino.h>
 
 #define MOTORS_SPEED 100
+#define SLOW_SPEED 50
 
 long lastNASCount = 0;
 long startNAS = 0;

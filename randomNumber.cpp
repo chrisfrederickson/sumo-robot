@@ -4,7 +4,7 @@
 
 #define MAX_TICKS 18
 #define DEG_PER_TICK 5
-#define NINETY_DEG 22
+#define NINETY_DEG 16
 int tick = -1;
 
 int getRandom(int mi, int ma) {

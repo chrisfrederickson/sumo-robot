@@ -17,7 +17,7 @@
 #define CONTACT_SIDE_THRESHOLD 4000
 #define SLIP_THRESHOLD 2 //In odd units -- this is the acceleration detection for slippage
 
-#define CALIBRATION_SAMPLES 120 // Number of compass readings to take when calibrating
+#define CALIBRATION_SAMPLES 10 // Number of compass readings to take when calibrating
 #define CRB_REG_M_2_5GAUSS 0x60 // CRB_REG_M value for magnetometer +/-2.5 gauss full scale
 #define CRA_REG_M_220HZ 0x1C // CRA_REG_M value for magnetometer 220 Hz update rate
 
