@@ -25,7 +25,11 @@ ScratchBot.d ScratchBot.o ScratchBot.o: .././ScratchBot.cpp \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr32\ gcc\native\3.4.1052\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/avr32/twi_211.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr32\ gcc\native\3.4.1052\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/avr32/usart_400.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr32\ gcc\native\3.4.1052\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/avr32/usbb_311.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr32\ gcc\native\3.4.1052\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/avr32/wdt_231.h
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr32\ gcc\native\3.4.1052\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/avr32/wdt_231.h \
+ .././utils/MotorDriver.h .././sensors/Button.h \
+ .././sensors/ProximitySensor.h .././sensors/IR.h \
+ .././sensors/MotionSensor.h .././sensors/SensorsArray.h \
+ .././strategies/Strategy.h .././strategies/RandomMovement.h
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr32\ gcc\native\3.4.1052\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/avr32/io.h:
 
@@ -80,3 +84,19 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr32\ gcc\native\3.4.1052\avr32
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr32\ gcc\native\3.4.1052\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/avr32/usbb_311.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr32\ gcc\native\3.4.1052\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/avr32/wdt_231.h:
+
+.././utils/MotorDriver.h:
+
+.././sensors/Button.h:
+
+.././sensors/ProximitySensor.h:
+
+.././sensors/IR.h:
+
+.././sensors/MotionSensor.h:
+
+.././sensors/SensorsArray.h:
+
+.././strategies/Strategy.h:
+
+.././strategies/RandomMovement.h:

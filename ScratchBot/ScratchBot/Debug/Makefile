@@ -31,12 +31,21 @@ OUTPUT_FILE_DEP:=
 LIB_DEP:=
 
 # Every subdirectory with source files must be described here
-SUBDIRS := 
+SUBDIRS :=  \
+../NewFolder1/
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../ScratchBot.cpp
+../ScratchBot.cpp \
+../sensors/Button.cpp \
+../sensors/IR.cpp \
+../sensors/MotionSensor.cpp \
+../sensors/ProximitySensor.cpp \
+../sensors/SensorsArray.cpp \
+../strategies/RandomMovement.cpp \
+../strategies/Strategy.cpp \
+../utils/MotorDriver.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -46,16 +55,48 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-ScratchBot.o
+ScratchBot.o \
+sensors/Button.o \
+sensors/IR.o \
+sensors/MotionSensor.o \
+sensors/ProximitySensor.o \
+sensors/SensorsArray.o \
+strategies/RandomMovement.o \
+strategies/Strategy.o \
+utils/MotorDriver.o
 
 OBJS_AS_ARGS +=  \
-ScratchBot.o
+ScratchBot.o \
+sensors/Button.o \
+sensors/IR.o \
+sensors/MotionSensor.o \
+sensors/ProximitySensor.o \
+sensors/SensorsArray.o \
+strategies/RandomMovement.o \
+strategies/Strategy.o \
+utils/MotorDriver.o
 
 C_DEPS +=  \
-ScratchBot.d
+ScratchBot.d \
+sensors/Button.d \
+sensors/IR.d \
+sensors/MotionSensor.d \
+sensors/ProximitySensor.d \
+sensors/SensorsArray.d \
+strategies/RandomMovement.d \
+strategies/Strategy.d \
+utils/MotorDriver.d
 
 C_DEPS_AS_ARGS +=  \
-ScratchBot.d
+ScratchBot.d \
+sensors/Button.d \
+sensors/IR.d \
+sensors/MotionSensor.d \
+sensors/ProximitySensor.d \
+sensors/SensorsArray.d \
+strategies/RandomMovement.d \
+strategies/Strategy.d \
+utils/MotorDriver.d
 
 OUTPUT_FILE_PATH +=ScratchBot.elf
 
@@ -71,7 +112,44 @@ LIB_DEP+=
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ./%.o: .././%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR32/GNU C++ Compiler : 4.4.7
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR32 GCC\Native\3.4.1052\avr32-gnu-toolchain\bin\avr32-g++.exe$(QUOTE) -DDEBUG  -O1 -ffunction-sections -masm-addr-pseudos -g3 -Wall -mpart=uc3a0128 -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+sensors/%.o: ../sensors/%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR32/GNU C++ Compiler : 4.4.7
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR32 GCC\Native\3.4.1052\avr32-gnu-toolchain\bin\avr32-g++.exe$(QUOTE) -DDEBUG  -O1 -ffunction-sections -masm-addr-pseudos -g3 -Wall -mpart=uc3a0128 -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+strategies/%.o: ../strategies/%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR32/GNU C++ Compiler : 4.4.7
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR32 GCC\Native\3.4.1052\avr32-gnu-toolchain\bin\avr32-g++.exe$(QUOTE) -DDEBUG  -O1 -ffunction-sections -masm-addr-pseudos -g3 -Wall -mpart=uc3a0128 -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+utils/%.o: ../utils/%.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR32/GNU C++ Compiler : 4.4.7
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR32 GCC\Native\3.4.1052\avr32-gnu-toolchain\bin\avr32-g++.exe$(QUOTE) -DDEBUG  -O1 -ffunction-sections -masm-addr-pseudos -g3 -Wall -mpart=uc3a0128 -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

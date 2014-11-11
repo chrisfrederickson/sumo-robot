@@ -118,6 +118,57 @@
     <Compile Include="ScratchBot.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="sensors\Button.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensors\Button.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensors\IR.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensors\IR.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensors\MotionSensor.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensors\MotionSensor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensors\ProximitySensor.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensors\ProximitySensor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensors\SensorsArray.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensors\SensorsArray.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="strategies\RandomMovement.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="strategies\RandomMovement.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="strategies\Strategy.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="strategies\Strategy.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="utils\MotorDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="utils\MotorDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

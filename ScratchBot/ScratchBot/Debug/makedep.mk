@@ -4,3 +4,19 @@
 
 ScratchBot.cpp
 
+sensors\Button.cpp
+
+sensors\IR.cpp
+
+sensors\MotionSensor.cpp
+
+sensors\ProximitySensor.cpp
+
+sensors\SensorsArray.cpp
+
+strategies\RandomMovement.cpp
+
+strategies\Strategy.cpp
+
+utils\MotorDriver.cpp
+
