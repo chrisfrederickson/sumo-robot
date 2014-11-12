@@ -12,11 +12,11 @@
 ProximitySensor::ProximitySensor()
 {
 } //ProximitySensor
-ProximitySensor::distanceToObject() {
+float ProximitySensor::distanceToObject() {
 	//Detects closest object, returns distance in meters
 	return 0;
 }
-ProximitySensor::detectObject() {
+bool ProximitySensor::detectObject() {
 	return this->distanceToObject() < 3; //Detected an object less than 3 meters away
 }
 

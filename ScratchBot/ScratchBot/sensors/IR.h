@@ -12,11 +12,6 @@
 
 class IR
 {
-//variables
-public:
-protected:
-private:
-
 //functions
 public:
 	IR();
@@ -26,8 +21,8 @@ protected:
 private:
 	IR( const IR &c );
 	IR& operator=( const IR &c );
-	int getLeft();
-	int getRight();
+	int getLeftIR();
+	int getRightIR();
 	int THRESHOLD;
 
 }; //IR

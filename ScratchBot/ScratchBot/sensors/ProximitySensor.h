@@ -20,12 +20,13 @@ private:
 //functions
 public:
 	ProximitySensor();
-	int distanceToObject();
+	float distanceToObject();
 	bool detectObject();
-protected:
-private:
 	ProximitySensor( const ProximitySensor &c );
 	ProximitySensor& operator=( const ProximitySensor &c );
+protected:
+private:
+	
 
 }; //ProximitySensor
 

@@ -21,10 +21,11 @@ private:
 public:
 	RandomMovement();
 	~RandomMovement();
-protected:
-private:
 	RandomMovement( const RandomMovement &c );
 	RandomMovement& operator=( const RandomMovement &c );
+protected:
+private:
+	
 
 }; //RandomMovement
 

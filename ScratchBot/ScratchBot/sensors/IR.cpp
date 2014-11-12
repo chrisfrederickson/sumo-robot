@@ -13,17 +13,17 @@ IR::IR()
 {
 	THRESHOLD = 1000;
 } 
-IR::detectLeft() {
+bool IR::detectLeft() {
 	//Detects white on the left
 	return getLeftIR()>THRESHOLD;
 }
-IR::detectRight() {
+bool IR::detectRight() {
 	//Detects white on the right
 	return getRightIR()>THRESHOLD;
 }
-IR::getLeftIR() {
+int IR::getLeftIR() {
 	return 0;	
 }
-IR::getRightIR() {
+int IR::getRightIR() {
 	return 0;
 }

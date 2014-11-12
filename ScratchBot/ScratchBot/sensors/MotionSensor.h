@@ -26,10 +26,11 @@ public:
 	int getGyroX();
 	int getGyroY();
 	int getGyroZ();
-protected:
-private:
 	MotionSensor( const MotionSensor &c );
 	MotionSensor& operator=( const MotionSensor &c );
+protected:
+private:
+	
 
 }; //MotionSensor
 

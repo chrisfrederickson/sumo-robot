@@ -12,21 +12,21 @@
 MotionSensor::MotionSensor()
 {
 } 
-MotionSensor::getAccX() {
+int MotionSensor::getAccX() {
 	return 0;
 }
-MotionSensor::getAccY() {
+int MotionSensor::getAccY() {
 	return 0;
 }
-MotionSensor::getAccZ() {
+int MotionSensor::getAccZ() {
 	return 0;
 }
-MotionSensor::getGyroX() {
+int MotionSensor::getGyroX() {
 	return 0;
 }
-MotionSensor::getGyroY() {
+int MotionSensor::getGyroY() {
 	return 0;
 }
-MotionSensor::getGyroZ() {
+int MotionSensor::getGyroZ() {
 	return 0;
 }

@@ -5,8 +5,11 @@
 * Author: N
 */
 
-
+#include "Button.h"
+#include "MotionSensor.h"
+#include "ProximitySensor.h"
 #include "SensorsArray.h"
+
 
 // default constructor
 SensorsArray::SensorsArray()
@@ -16,15 +19,15 @@ SensorsArray::SensorsArray()
 	p = ProximitySensor();
 	tick = 0;
 }
-SensorsArray::getButton() {
+Button SensorsArray::getButton() {
 	return b;
 }
-SensorsArray::getTick() {
+int SensorsArray::getTick() {
 	return tick;
 }
-SensorsArray::setTick(int t) {
+void SensorsArray::setTick(int t) {
 	tick = t;
 }
-SensorsArray::incTick() {
+int SensorsArray::incTick() {
 	return tick++;
 };
