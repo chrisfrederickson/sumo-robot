@@ -8,9 +8,11 @@
 
 #include "RandomMovement.h"
 
+
 // default constructor
-RandomMovement::RandomMovement()
+RandomMovement::RandomMovement(SensorsArray s, MotorDriver m): Strategy(s, m)
 {
+	
 } //RandomMovement
 
 // default destructor

@@ -22,3 +22,6 @@ void Button::waitForPress() {
 		
 	}
 }
+/*Button::Button& operator=( const Button &c ) {
+	return c;
+}*/

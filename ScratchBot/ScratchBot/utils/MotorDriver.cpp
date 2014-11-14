@@ -15,15 +15,15 @@ MotorDriver::MotorDriver()
 	leftSpeed = 0;
 	rightSpeed = 0;	
 }
-MotorDriver::setLeft(int left) {
+void MotorDriver::setLeft(int left) {
 	leftSpeed = left;
 }
-MotorDriver::setRight(int right) {
+void MotorDriver::setRight(int right) {
 	rightSpeed = right;
 }
-MotorDriver::getLeft() {
+int MotorDriver::getLeft() {
 	return leftSpeed;
 }
-MotorDriver::getRight() {
+int MotorDriver::getRight() {
 	return rightSpeed;
 }

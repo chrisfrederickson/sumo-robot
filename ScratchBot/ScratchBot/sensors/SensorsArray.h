@@ -9,6 +9,10 @@
 #ifndef __SENSORSARRAY_H__
 #define __SENSORSARRAY_H__
 
+#include "Button.h"
+#include "MotionSensor.h"
+#include "ProximitySensor.h"
+#include "SensorsArray.h"
 
 class SensorsArray
 {

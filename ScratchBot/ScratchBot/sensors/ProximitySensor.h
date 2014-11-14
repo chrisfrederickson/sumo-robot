@@ -23,7 +23,6 @@ public:
 	float distanceToObject();
 	bool detectObject();
 	ProximitySensor( const ProximitySensor &c );
-	ProximitySensor& operator=( const ProximitySensor &c );
 protected:
 private:
 	

@@ -27,7 +27,6 @@ public:
 	int getGyroY();
 	int getGyroZ();
 	MotionSensor( const MotionSensor &c );
-	MotionSensor& operator=( const MotionSensor &c );
 protected:
 private:
 	

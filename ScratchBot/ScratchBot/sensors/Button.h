@@ -23,7 +23,6 @@ public:
 	bool isPressed();
 	void waitForPress();
 	Button( const Button &c );
-	Button& operator=( const Button &c );
 protected:
 private:
 	bool pressed;

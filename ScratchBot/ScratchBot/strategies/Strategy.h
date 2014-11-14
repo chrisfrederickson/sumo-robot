@@ -9,24 +9,20 @@
 #ifndef __STRATEGY_H__
 #define __STRATEGY_H__
 
+#include "../utils/MotorDriver.h"
+#include "../sensors/SensorsArray.h"
 
 class Strategy
 {
-//variables
-public:
-protected:
-private:
-
-//functions
 public:
 	Strategy(SensorsArray s, MotorDriver m);
 	bool shouldRun();
 	void activate();
 	void tapIn();
-protected:
-private:
 	Strategy( const Strategy &c );
 	Strategy& operator=( const Strategy &c );
+protected:
+private:	
 	SensorsArray sensors;
 	MotorDriver motors;
 

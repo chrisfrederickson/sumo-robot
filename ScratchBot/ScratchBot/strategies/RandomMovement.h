@@ -8,18 +8,13 @@
 
 #ifndef __RANDOMMOVEMENT_H__
 #define __RANDOMMOVEMENT_H__
-
+#include "Strategy.h"
 
 class RandomMovement: public Strategy
 {
-//variables
-public:
-protected:
-private:
-
 //functions
 public:
-	RandomMovement();
+	RandomMovement(SensorsArray s, MotorDriver m);
 	~RandomMovement();
 	RandomMovement( const RandomMovement &c );
 	RandomMovement& operator=( const RandomMovement &c );
