@@ -22,6 +22,10 @@ public:
 	MotorDriver();
 	void setLeft(int l);
 	void setRight(int r);
+	void goForward(int v);
+	void goBackward(int v);
+	void turnCW(int v);
+	void turnCCW(int v);
 	int getLeft();
 	int getRight();	
 	MotorDriver( const MotorDriver &c );

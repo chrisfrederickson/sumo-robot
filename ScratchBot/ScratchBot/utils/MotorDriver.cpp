@@ -21,6 +21,21 @@ void MotorDriver::setLeft(int left) {
 void MotorDriver::setRight(int right) {
 	rightSpeed = right;
 }
+void MotorDriver::goForward(int v) {
+	setLeft(v);
+	setRight(v);
+}
+void MotorDriver::goBackward(int v) {
+	goForward(-v);
+}
+//Make a 0-point turn
+void MotorDriver::turnCW(int v) {
+	setLeft(v);
+	setRight(-v);
+}
+void MotorDriver::turnCCW(int v) {
+	turnCW(-v);
+}
 int MotorDriver::getLeft() {
 	return leftSpeed;
 }

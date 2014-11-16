@@ -155,6 +155,12 @@
     <Compile Include="strategies\RandomMovement.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="strategies\Sniper.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="strategies\Sniper.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="strategies\Strategy.cpp">
       <SubType>compile</SubType>
     </Compile>

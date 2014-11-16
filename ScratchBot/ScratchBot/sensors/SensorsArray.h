@@ -25,6 +25,7 @@ private:
 public:
 	SensorsArray();
 	Button getButton();
+	ProximitySensor getProximitySensor();
 	int getTick();
 	void setTick(int t);
 	int incTick();

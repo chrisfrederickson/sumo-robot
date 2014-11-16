@@ -16,6 +16,8 @@ sensors\SensorsArray.cpp
 
 strategies\RandomMovement.cpp
 
+strategies\Sniper.cpp
+
 strategies\Strategy.cpp
 
 utils\MotorDriver.cpp

@@ -22,6 +22,9 @@ SensorsArray::SensorsArray()
 Button SensorsArray::getButton() {
 	return b;
 }
+ProximitySensor SensorsArray::getProximitySensor() {
+	return p;
+}
 int SensorsArray::getTick() {
 	return tick;
 }

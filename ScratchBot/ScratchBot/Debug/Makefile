@@ -48,6 +48,7 @@ C_SRCS +=  \
 ../sensors/ProximitySensor.cpp \
 ../sensors/SensorsArray.cpp \
 ../strategies/RandomMovement.cpp \
+../strategies/Sniper.cpp \
 ../strategies/Strategy.cpp \
 ../utils/MotorDriver.cpp
 
@@ -66,6 +67,7 @@ sensors/MotionSensor.o \
 sensors/ProximitySensor.o \
 sensors/SensorsArray.o \
 strategies/RandomMovement.o \
+strategies/Sniper.o \
 strategies/Strategy.o \
 utils/MotorDriver.o
 
@@ -77,6 +79,7 @@ sensors/MotionSensor.o \
 sensors/ProximitySensor.o \
 sensors/SensorsArray.o \
 strategies/RandomMovement.o \
+strategies/Sniper.o \
 strategies/Strategy.o \
 utils/MotorDriver.o
 
@@ -88,6 +91,7 @@ sensors/MotionSensor.d \
 sensors/ProximitySensor.d \
 sensors/SensorsArray.d \
 strategies/RandomMovement.d \
+strategies/Sniper.d \
 strategies/Strategy.d \
 utils/MotorDriver.d
 
@@ -99,6 +103,7 @@ sensors/MotionSensor.d \
 sensors/ProximitySensor.d \
 sensors/SensorsArray.d \
 strategies/RandomMovement.d \
+strategies/Sniper.d \
 strategies/Strategy.d \
 utils/MotorDriver.d
 
@@ -116,6 +121,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
