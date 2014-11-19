@@ -16,10 +16,17 @@ class MotorDriver
 public:
 protected:
 private:
+	int leftSpeedTarget;
+	int rightSpeedTarget;
+	int leftSpeed;
+	int rightSpeed;
 
 //functions
 public:
 	MotorDriver();
+	void execDrive();
+	void genActualSpeed();
+	void exec();
 	void setLeft(int l);
 	void setRight(int r);
 	void goForward(int v);
@@ -32,8 +39,6 @@ public:
 	MotorDriver& operator=( const MotorDriver &c );
 protected:
 private:
-	int leftSpeed;
-	int rightSpeed;
 
 }; //MotorDriver
 
