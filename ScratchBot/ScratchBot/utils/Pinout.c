@@ -13,7 +13,7 @@
 
 //IR
 #define IR_RIGHT A2
-#deine IR_LEFT A3
+#define IR_LEFT A3
 
 //Motion
 #define MOTION_SDA 2
