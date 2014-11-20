@@ -7,6 +7,7 @@
 #define ACCELERATION_CONST 0.1
 
 #include "MotorDriver.h"
+#include "Pinouts.h"
 #include "Arduino.h"
 using namespace std;
 
