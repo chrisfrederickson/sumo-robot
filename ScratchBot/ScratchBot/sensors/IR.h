@@ -24,6 +24,7 @@ private:
 	int getLeftIR();
 	int getRightIR();
 	int THRESHOLD;
+	ZumoReflectanceSensorArray sensors;
 
 }; //IR
 
