@@ -16,6 +16,7 @@
 #include "strategies/Strategy.h"
 #include "strategies/RandomMovement.h"
 #include "strategies/Sniper.h"
+
 #include <chrono>       /* time_t, struct tm, difftime, time, mktime */
 using namespace std;
 using std::chrono::milliseconds;
