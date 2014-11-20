@@ -4,22 +4,75 @@
 * Created: 11/10/2014 8:33:30 PM
 * Author: N
 */
-
+#define ACCELERATION_CONST 0.1
 
 #include "MotorDriver.h"
+#include "Pinouts.h"
+#include "Arduino.h"
 using namespace std;
 
 // default constructor
 MotorDriver::MotorDriver()
 {
+	leftSpeedTarget = 0;
+	rightSpeedTarget = 0;
 	leftSpeed = 0;
-	rightSpeed = 0;	
+	rightSpeed = 0;
+	
+	pinMode(M1IN1, OUTPUT);
+	pinMode(M1IN2, OUTPUT);
+	pinMode(M2IN1, OUTPUT);
+	pinMode(M2IN2, OUTPUT);
+	pinMode(M1PWM, OUTPUT);
+	pinMode(M2PWM, OUTPUT);
 }
+
+void MotorDriver::execDrive()
+{
+	//Left motor direction control
+	if (leftSpeed > 0) {
+		digitalWrite(M1IN1, HIGH);
+		digitalWrite(M1IN2, LOW);
+	} else if (leftSpeed = 0) {
+		digitalWrite(M1IN1, LOW);
+		digitalWrite(M1IN2, LOW);
+	} else {
+		digitalWrite(M1IN1, LOW);
+		digitalWrite(M1IN2, HIGH);
+	}
+
+	//Right motor direction control
+	if (rightSpeed > 0) {
+		digitalWrite(M2IN1, HIGH);
+		digitalWrite(M2IN2, LOW);
+	} else if (leftSpeed = 0) {
+		digitalWrite(M2IN1, LOW);
+		digitalWrite(M2IN2, LOW);
+	} else {
+		digitalWrite(M2IN1, LOW);
+		digitalWrite(M2IN2, HIGH);
+	}
+	
+	//Speed control
+	analogWrite(M1PWM, abs(leftSpeed)*2.55);
+	analogWrite(M2PWM, abs(leftSpeed)*2.55);
+}
+
+void MotorDriver::genActualSpeed() {
+	leftSpeed = leftSpeed + int((leftSpeedTarget - leftSpeed) * ACCELERATION_CONST);
+	rightSpeed = rightSpeed + int((rightSpeedTarget - rightSpeed) * ACCELERATION_CONST);
+}
+
+void MotorDriver::exec() {
+	genActualSpeed();
+	execDrive();
+}
+
 void MotorDriver::setLeft(int left) {
-	leftSpeed = left;
+	leftSpeedTarget = left;
 }
 void MotorDriver::setRight(int right) {
-	rightSpeed = right;
+	rightSpeedTarget = right;
 }
 void MotorDriver::goForward(int v) {
 	setLeft(v);
@@ -41,4 +94,10 @@ int MotorDriver::getLeft() {
 }
 int MotorDriver::getRight() {
 	return rightSpeed;
+}
+int MotorDriver::getLeftTarget() {
+	return leftSpeedTarget;
+}
+int MotorDriver::getRightTarget() {
+	return rightSpeedTarget;
 }
