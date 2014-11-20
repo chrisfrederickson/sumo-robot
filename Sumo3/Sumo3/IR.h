@@ -8,7 +8,8 @@
 
 #ifndef __IR_H__
 #define __IR_H__
-
+#include <ZumoReflectanceSensorArray.h>
+#include <QTRSensors.h>
 
 class IR
 {
@@ -24,6 +25,7 @@ private:
 	int getLeftIR();
 	int getRightIR();
 	int THRESHOLD;
+	ZumoReflectanceSensorArray sensors;
 
 }; //IR
 

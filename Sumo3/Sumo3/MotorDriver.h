@@ -1,4 +1,4 @@
-/* 
+/*
 * MotorDriver.h
 *
 * Created: 11/10/2014 8:33:47 PM
@@ -12,14 +12,21 @@
 
 class MotorDriver
 {
-//variables
-public:
-protected:
-private:
+	//variables
+	public:
+	protected:
+	private:
+	int leftSpeedTarget;
+	int rightSpeedTarget;
+	int leftSpeed;
+	int rightSpeed;
 
-//functions
-public:
+	//functions
+	public:
 	MotorDriver();
+	void execDrive();
+	void genActualSpeed();
+	void exec();
 	void setLeft(int l);
 	void setRight(int r);
 	void goForward(int v);
@@ -27,13 +34,13 @@ public:
 	void turnCW(int v);
 	void turnCCW(int v);
 	int getLeft();
-	int getRight();	
-//	MotorDriver( const MotorDriver &c );
-//	MotorDriver& operator=( const MotorDriver &c );
-protected:
-private:
-	int leftSpeed;
-	int rightSpeed;
+	int getRight();
+	int getLeftTarget();
+	int getRightTarget();
+	MotorDriver( const MotorDriver &c );
+	MotorDriver& operator=( const MotorDriver &c );
+	protected:
+	private:
 
 }; //MotorDriver
 

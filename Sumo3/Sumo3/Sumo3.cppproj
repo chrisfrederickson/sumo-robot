@@ -64,6 +64,10 @@
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors\utility</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -97,6 +101,10 @@
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors\utility</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -144,6 +152,10 @@
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors\utility</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -177,6 +189,10 @@
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors\utility</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray</Value>
+            <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>

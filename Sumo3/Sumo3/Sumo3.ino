@@ -1,3 +1,5 @@
+#include <QTRSensors.h>
+#include <ZumoReflectanceSensorArray.h>
 /*
  * Sumo3.ino
  *
@@ -18,7 +20,6 @@ MotorDriver motors;
 
 void setup()
 {
-
 	  /* add setup code here, setup code runs once when the processor starts */
 	  sensors = SensorsArray();
 	  motors = MotorDriver();
