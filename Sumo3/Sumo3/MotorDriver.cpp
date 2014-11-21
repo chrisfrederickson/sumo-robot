@@ -70,7 +70,7 @@ void MotorDriver::execDrive() {
 	if (rightSpeed > 0) {
 		digitalWrite(M2IN1, HIGH);
 		digitalWrite(M2IN2, LOW);
-        } else if (leftSpeed = 0) {
+        } else if (rightSpeed = 0) {
 		digitalWrite(M2IN1, LOW);
 		digitalWrite(M2IN2, LOW);
 	} else {

@@ -23,10 +23,11 @@ public:
 	bool detectObject();
 	void exec();
 	int distance();
+float cm();
 //	ProximitySensor( const ProximitySensor &c );
 protected:
 private:
-	float cm();
+	
 	int dist; 
 
 	int _irPin;

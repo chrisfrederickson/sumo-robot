@@ -28,8 +28,8 @@ boolean q;
 int led = 13;
 
 //STRATEGIES
-WallAvoidance wallAvoidance = WallAvoidance(sensors, motors);
-Sniper sniper = Sniper(sensors, motors);
+//WallAvoidance wallAvoidance = WallAvoidance(sensors, motors);
+//Sniper sniper = Sniper(sensors, motors);
 void setup()
 {
 	  /* add setup code here, setup code runs once when the processor starts */
@@ -41,17 +41,27 @@ void setup()
           
 }
 void loop() {
-	int mills = millis();
+  sensors.exec();
+  if(sensors.getProximitySensor().cm() > 700) 
+    motors.goForward(100);
+  else
+    motors.turnCW(100);
+    
+  motors.exec();
+}
+
+void loop5() {
+	//int mills = millis();
 	//Every tick
-	while((sensors.getTick() - mills) < TICK) {
+	//while((sensors.getTick() - mills) < TICK) {
           /*Serial.print(sensors.getTick());
           Serial.print("  ");
           Serial.print(mills);          
           Serial.print("  ");
           Serial.println(sensors.getTick()-mills);*/
-          sensors.setTick(millis());
-	}
-        sensors.exec();
+          //sensors.setTick(millis());
+	//}
+        //sensors.exec();
         
         /*if(q == true) {
         digitalWrite(led, LOW); 
@@ -60,6 +70,7 @@ void loop() {
         digitalWrite(led,HIGH);
         q=true;
         }*/
+        /*
         if(sensors.getIR().detectLeft())
         digitalWrite(led, HIGH);
         else
@@ -84,14 +95,14 @@ void loop() {
 	else if(sniper.shouldRun())
           sniper.activate();
         */
-        motors.goForward(100);
+        /**/
+        motors.goForward(millis()%1000 > 500?100:-100);
 	motors.exec();
 }
-
+/*
 void loop2()
 {
-
-	  /* add main program code here, this code starts again each time it ends */
+	  /* add main program code here, this code starts again each time it ends 
 	//Refresh sensor data
 	
     int mills = millis();
@@ -102,3 +113,4 @@ void loop2()
 
 	motors.exec();
 }
+*/
