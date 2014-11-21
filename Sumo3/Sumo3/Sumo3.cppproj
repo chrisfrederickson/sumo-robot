@@ -63,7 +63,7 @@
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\eightanaloginputs</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors\utility</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray</Value>
@@ -100,7 +100,7 @@
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\eightanaloginputs</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors\utility</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray</Value>
@@ -127,6 +127,71 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
+    <VisualMicroSettings>
+      <VisualMicroSettings>
+        <arduino.upload.port>COM4</arduino.upload.port>
+        <arduino.board.name>mini328</arduino.board.name>
+        <arduino.board.desc>Arduino Mini w/ ATmega328</arduino.board.desc>
+        <arduino.board.property_bag>name=Arduino Mini w/ ATmega328
+upload.protocol=arduino
+upload.maximum_size=28672
+upload.speed=115200
+bootloader.low_fuses=0xff
+bootloader.high_fuses=0xd8
+bootloader.extended_fuses=0x05
+bootloader.path=optiboot
+bootloader.file=optiboot_atmega328-Mini.hex
+bootloader.unlock_bits=0x3F
+bootloader.lock_bits=0x0F
+build.mcu=atmega328p
+build.f_cpu=16000000L
+build.core=arduino
+build.variant=eightanaloginputs
+runtime.ide.path=C:\Program Files (x86)\Arduino
+build.system.path=C:\Program Files (x86)\Arduino\hardware\arduino\system
+runtime.ide.version=105
+originalid=mini328
+vm.platform.root.path=C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\arduino10x
+vm.core.include=arduino.h
+ide.hint=Arduino 0023 and 1.0.x Ide
+ide.location.key=Arduino
+ide.location.ide.winreg=Arduino 1.0.x Application
+ide.location.sketchbook.winreg=Arduino 1.0.x Sketchbook
+ide.location.sketchbook.preferences=sketchbook.path
+ide.location.sketchbook.default=%MYDOCUMENTS%\arduino
+ide.location.preferences=%VM_APPDATA_ROAMING%\arduino\preferences.txt
+ide.default.package=arduino
+ide.default.platform=avr
+ide.multiplatform=true
+ide.includes=arduino.h
+ide.platformswithoutpackage=true
+ide.includes.fallback=wprogram.h
+ide.extension=ino
+ide.extension.fallback=pde
+ide.versionLTEQ=149
+ide.exe=arduino.exe
+ide.hosts=atmel
+ide.url=http://arduino.cc/en/Main/Software
+vm.debug=true
+software=ARDUINO
+ide.appid=arduino10x
+location.sketchbook=C:\Users\N\Documents\Arduino
+build.board=AVR_MINI328
+vm.boardsource.path=C:\Program Files (x86)\Arduino\hardware\arduino
+vm.platformname.name=avr
+build.arch=AVR
+</arduino.board.property_bag>
+        <arduino.build.mcu>atmega328p</arduino.build.mcu>
+        <arduino.build.f_cpu>16000000L</arduino.build.f_cpu>
+        <arduino.build.core>arduino</arduino.build.core>
+        <arduino.upload.protocol>arduino</arduino.upload.protocol>
+        <arduino.upload.speed>115200</arduino.upload.speed>
+        <arduino.upload.maximum_size>28672</arduino.upload.maximum_size>
+        <visualmicro.application.name>arduino10x</visualmicro.application.name>
+        <visualmicro.package.name>arduino</visualmicro.package.name>
+        <visualmicro.platform.name>avr</visualmicro.platform.name>
+      </VisualMicroSettings>
+    </VisualMicroSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
@@ -151,7 +216,7 @@
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\eightanaloginputs</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors\utility</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray</Value>
@@ -188,7 +253,7 @@
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\eightanaloginputs</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\QTRSensors\utility</Value>
             <Value>C:\Users\N\Documents\Arduino\libraries\ZumoReflectanceSensorArray</Value>
@@ -215,6 +280,71 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
+    <VisualMicroSettings>
+      <VisualMicroSettings>
+        <arduino.upload.port>COM4</arduino.upload.port>
+        <arduino.board.name>mini328</arduino.board.name>
+        <arduino.board.desc>Arduino Mini w/ ATmega328</arduino.board.desc>
+        <arduino.board.property_bag>name=Arduino Mini w/ ATmega328
+upload.protocol=arduino
+upload.maximum_size=28672
+upload.speed=115200
+bootloader.low_fuses=0xff
+bootloader.high_fuses=0xd8
+bootloader.extended_fuses=0x05
+bootloader.path=optiboot
+bootloader.file=optiboot_atmega328-Mini.hex
+bootloader.unlock_bits=0x3F
+bootloader.lock_bits=0x0F
+build.mcu=atmega328p
+build.f_cpu=16000000L
+build.core=arduino
+build.variant=eightanaloginputs
+runtime.ide.path=C:\Program Files (x86)\Arduino
+build.system.path=C:\Program Files (x86)\Arduino\hardware\arduino\system
+runtime.ide.version=105
+originalid=mini328
+vm.platform.root.path=C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\arduino10x
+vm.core.include=arduino.h
+ide.hint=Arduino 0023 and 1.0.x Ide
+ide.location.key=Arduino
+ide.location.ide.winreg=Arduino 1.0.x Application
+ide.location.sketchbook.winreg=Arduino 1.0.x Sketchbook
+ide.location.sketchbook.preferences=sketchbook.path
+ide.location.sketchbook.default=%MYDOCUMENTS%\arduino
+ide.location.preferences=%VM_APPDATA_ROAMING%\arduino\preferences.txt
+ide.default.package=arduino
+ide.default.platform=avr
+ide.multiplatform=true
+ide.includes=arduino.h
+ide.platformswithoutpackage=true
+ide.includes.fallback=wprogram.h
+ide.extension=ino
+ide.extension.fallback=pde
+ide.versionLTEQ=149
+ide.exe=arduino.exe
+ide.hosts=atmel
+ide.url=http://arduino.cc/en/Main/Software
+vm.debug=true
+software=ARDUINO
+ide.appid=arduino10x
+location.sketchbook=C:\Users\N\Documents\Arduino
+build.board=AVR_MINI328
+vm.boardsource.path=C:\Program Files (x86)\Arduino\hardware\arduino
+vm.platformname.name=avr
+build.arch=AVR
+</arduino.board.property_bag>
+        <arduino.build.mcu>atmega328p</arduino.build.mcu>
+        <arduino.build.f_cpu>16000000L</arduino.build.f_cpu>
+        <arduino.build.core>arduino</arduino.build.core>
+        <arduino.upload.protocol>arduino</arduino.upload.protocol>
+        <arduino.upload.speed>115200</arduino.upload.speed>
+        <arduino.upload.maximum_size>28672</arduino.upload.maximum_size>
+        <visualmicro.application.name>arduino10x</visualmicro.application.name>
+        <visualmicro.package.name>arduino</visualmicro.package.name>
+        <visualmicro.platform.name>avr</visualmicro.platform.name>
+      </VisualMicroSettings>
+    </VisualMicroSettings>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Button.cpp">
@@ -241,6 +371,9 @@
     <Compile Include="MotorDriver.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Pinouts.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ProximitySensor.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -257,6 +390,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SensorsArray.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SharpIR\SharpIR.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SharpIR\SharpIR.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Sniper.cpp">
@@ -279,7 +418,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="SharpIR\" />
+    <Folder Include="SharpIR\examples\" />
+    <Folder Include="SharpIR\examples\SharpSensorCm\" />
     <Folder Include="Visual Micro\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SharpIR\.DS_Store">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="SharpIR\COPYING.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="SharpIR\examples\.DS_Store">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="SharpIR\examples\SharpSensorCm\SharpSensorCm.ino">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="SharpIR\keywords.txt">
+      <SubType>compile</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

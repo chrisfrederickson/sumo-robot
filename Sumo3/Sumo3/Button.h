@@ -22,6 +22,7 @@ public:
 	Button();
 	bool isPressed();
 	void waitForPress();
+	void exec();
 //	Button( const Button &c );
 protected:
 private:

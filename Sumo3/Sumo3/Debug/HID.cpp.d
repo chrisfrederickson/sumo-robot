@@ -1,4 +1,4 @@
-C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\HID.cpp.o:  \
+C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\HID.cpp.o:  \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino\HID.cpp \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino\/Platform.h \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino\/Arduino.h \
@@ -10,6 +10,7 @@ C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\HID.cpp.o:  \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino\/Print.h \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino\/Printable.h \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino/new.h \
-  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\variants\standard/pins_arduino.h \
+  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\variants\eightanaloginputs/pins_arduino.h \
+  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\variants\eightanaloginputs/../standard/pins_arduino.h \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino\/USBAPI.h \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino\/USBDesc.h

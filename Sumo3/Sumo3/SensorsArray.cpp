@@ -36,5 +36,7 @@ int SensorsArray::incTick() {
 };
 void SensorsArray::exec() {
 	//Refresh sensor data for each thing
+	b.exec();
+	p.exec();
 	//TODO
 }

@@ -37,8 +37,8 @@ class MotorDriver
 	int getRight();
 	int getLeftTarget();
 	int getRightTarget();
-	MotorDriver( const MotorDriver &c );
-	MotorDriver& operator=( const MotorDriver &c );
+	//MotorDriver( const MotorDriver &c );
+	//MotorDriver& operator=( const MotorDriver &c );
 	protected:
 	private:
 

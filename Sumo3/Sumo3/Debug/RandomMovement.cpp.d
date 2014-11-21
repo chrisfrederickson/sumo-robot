@@ -1,10 +1,10 @@
  \
- C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\RandomMovement.cpp.o:  \
- C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\RandomMovement.cpp \
-  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\/RandomMovement.h \
-  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\/Strategy.h \
-  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\/MotorDriver.h \
-  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\/SensorsArray.h \
-  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\/Button.h \
-  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\/MotionSensor.h \
-  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\uno\/ProximitySensor.h
+ C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\RandomMovement.cpp.o:  \
+ C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\RandomMovement.cpp \
+  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\/RandomMovement.h \
+  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\/Strategy.h \
+  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\/MotorDriver.h \
+  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\/SensorsArray.h \
+  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\/Button.h \
+  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\/MotionSensor.h \
+  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\/ProximitySensor.h

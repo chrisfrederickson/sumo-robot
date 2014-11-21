@@ -9,7 +9,6 @@
 #ifndef __PROXIMITYSENSOR_H__
 #define __PROXIMITYSENSOR_H__
 
-
 class ProximitySensor
 {
 //variables
@@ -22,10 +21,20 @@ public:
 	ProximitySensor();
 	float distanceToObject();
 	bool detectObject();
+	void exec();
+	int distance();
 //	ProximitySensor( const ProximitySensor &c );
 protected:
 private:
+	int cm();
 	
+	int _irPin;
+	int _model;
+	int _avg;
+	int _p;
+	int _sum;
+	int _previousDistance;
+	int _tol;
 
 }; //ProximitySensor
 

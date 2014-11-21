@@ -58,10 +58,10 @@ void MotorDriver::execDrive() {
 	if (leftSpeed > 0) {
 		digitalWrite(M1IN1, HIGH);
 		digitalWrite(M1IN2, LOW);
-		} else if (leftSpeed = 0) {
+        } else if (leftSpeed = 0) {
 		digitalWrite(M1IN1, LOW);
 		digitalWrite(M1IN2, LOW);
-		} else {
+	} else {
 		digitalWrite(M1IN1, LOW);
 		digitalWrite(M1IN2, HIGH);
 	}
@@ -70,17 +70,17 @@ void MotorDriver::execDrive() {
 	if (rightSpeed > 0) {
 		digitalWrite(M2IN1, HIGH);
 		digitalWrite(M2IN2, LOW);
-		} else if (leftSpeed = 0) {
+        } else if (leftSpeed = 0) {
 		digitalWrite(M2IN1, LOW);
 		digitalWrite(M2IN2, LOW);
-		} else {
+	} else {
 		digitalWrite(M2IN1, LOW);
 		digitalWrite(M2IN2, HIGH);
 	}
 	
 	//Speed control
 	analogWrite(M1PWM, abs(leftSpeed)*2.55);
-	analogWrite(M2PWM, abs(leftSpeed)*2.55);
+	analogWrite(M2PWM, abs(rightSpeed)*2.55);
 }
 void MotorDriver::genActualSpeed() {
 	leftSpeed = leftSpeed + int((leftSpeedTarget - leftSpeed) * ACCELERATION_CONST);

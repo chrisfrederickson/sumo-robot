@@ -22,6 +22,10 @@ void Button::waitForPress() {
 		
 	}
 }
+void Button::exec() {
+	//Get pressed state
+	pressed = false;
+}
 /*Button::Button& operator=( const Button &c ) {
 	return c;
 }*/

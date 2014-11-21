@@ -1,8 +1,7 @@
  \
- C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\ProximitySensor.cpp.o:  \
- C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\ProximitySensor.cpp \
-  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\/ProximitySensor.h \
-  C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\/Pinouts.h \
+ C:\Users\N\AppData\Local\VMicro\Arduino\Builds\Sumo3\mini328\QTRSensors\QTRSensors.cpp.o:  \
+ C:\Users\N\Documents\Arduino\libraries\QTRSensors\QTRSensors.cpp \
+  C:\Users\N\Documents\Arduino\libraries\QTRSensors\/QTRSensors.h \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino/Arduino.h \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino/binary.h \
   C:\Program\ Files\ (x86)\Arduino\hardware\arduino\cores\arduino/WCharacter.h \
