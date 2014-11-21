@@ -20,7 +20,7 @@
 #define MOTION_SCL 3
 
 //General
-#define PROX_OUT 4
+#define PROX_OUT 22
 #define BUZZER 9
 #define BUTTON 12
 #define LED 13

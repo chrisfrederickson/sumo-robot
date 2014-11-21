@@ -26,3 +26,7 @@ void Strategy::tapIn() {
 	if(this->shouldRun())
 		this->activate();
 }
+//Update with sensor data for current tick
+void Strategy::updateSensors(SensorsArray s) {
+  sensors = s;
+}  

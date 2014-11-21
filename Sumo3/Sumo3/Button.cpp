@@ -7,24 +7,30 @@
 
 
 #include "Button.h"
+#include "Pinouts.h"
+#include <Arduino.h>
 using namespace std;
 
 // default constructor
 Button::Button()
 {
 	pressed = false;
+  pinMode(BUTTON, INPUT);
 }
 bool Button::isPressed() {
 	return pressed;
 }
 void Button::waitForPress() {
 	while(!pressed){
-		
+		exec();
 	}
 }
 void Button::exec() {
 	//Get pressed state
-	pressed = false;
+  if(digitalRead(BUTTON) == HIGH)
+    pressed = true;
+  else
+    pressed = false;
 }
 /*Button::Button& operator=( const Button &c ) {
 	return c;

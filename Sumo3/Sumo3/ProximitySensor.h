@@ -26,8 +26,9 @@ public:
 //	ProximitySensor( const ProximitySensor &c );
 protected:
 private:
-	int cm();
-	
+	float cm();
+	int dist; 
+
 	int _irPin;
 	int _model;
 	int _avg;

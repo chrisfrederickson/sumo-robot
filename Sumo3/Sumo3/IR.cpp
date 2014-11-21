@@ -5,30 +5,34 @@
 * Author: N
 */
 
-
 #include "IR.h"
+#include <ZumoReflectanceSensorArray.h>
+#include <QTRSensors.h>
 #include "Pinouts.h"
 #include <Arduino.h>
 
+#define ZUMO_SENSOR_ARRAY_DEFAULT_EMITTER_PIN  A4
+ZumoReflectanceSensorArray ir;
 // default constructor
 IR::IR()
 {
 	THRESHOLD = 1000;
-	ZumoReflectanceSensorArray sensors(IR_LEFT);
-	//PINS USED ARE IR_LEFT and IR_RIGHT
-	sensors.init();
+//	//PINS USED ARE IR_LEFT and IR_RIGHT
+      byte sensorPins[] = { IR_LEFT, IR_RIGHT };
+        ir.init(sensorPins, sizeof(sensorPins), 2000, QTR_NO_EMITTER_PIN);
 } 
 bool IR::detectLeft() {
 	//Detects white on the left
-	return getLeftIR()>THRESHOLD;
+	return leftIR<THRESHOLD;
 }
 bool IR::detectRight() {
 	//Detects white on the right
-	return getRightIR()>THRESHOLD;
+	return rightIR<THRESHOLD;
 }
 int IR::getLeftIR() {
-	unsigned int sensorValues[6];
-	sensors.read(sensorValues);
+	unsigned int sensorValues[2];
+	ir.read(sensorValues);
+        return sensorValues[0];
 	return 100-sensorValues[0]/20;
 	//I know what you're thinking -- what's up with this calibration?
 	//Well that's the stuff that we used in the original code, and
@@ -36,7 +40,12 @@ int IR::getLeftIR() {
 	//good luck charm. <|:-D
 }
 int IR::getRightIR() {
-	unsigned int sensorValues[6];
-	sensors.read(sensorValues);
-	return 100-sensorValues[5]/20;
+	unsigned int sensorValues[2];
+	ir.read(sensorValues);
+        return sensorValues[1];
+	return 100-sensorValues[1]/20;
 }
+void IR::exec() {
+    leftIR = getLeftIR();
+    rightIR = getRightIR();
+}  

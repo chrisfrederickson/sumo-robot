@@ -12,7 +12,7 @@
 #include "Button.h"
 #include "MotionSensor.h"
 #include "ProximitySensor.h"
-#include "SensorsArray.h"
+#include "IR.h"
 
 class SensorsArray
 {
@@ -26,6 +26,7 @@ public:
 	SensorsArray();
 	Button getButton();
 	ProximitySensor getProximitySensor();
+        IR getIR();
 	int getTick();
 	void setTick(int t);
 	int incTick();
@@ -35,8 +36,9 @@ public:
 protected:
 private:
 	Button b;
-	MotionSensor m;
+	//MotionSensor m;
 	ProximitySensor p;
+        IR i;
 	int tick;
 
 }; //SensorsArray

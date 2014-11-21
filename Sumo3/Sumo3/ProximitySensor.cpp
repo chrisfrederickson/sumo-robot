@@ -27,17 +27,22 @@ ProximitySensor::ProximitySensor()
 } //ProximitySensor
 float ProximitySensor::distanceToObject() {
 	//Detects closest object, returns distance in centimeters
-	return cm();
+	return dist;
 }
 bool ProximitySensor::detectObject() {
-	return this->distanceToObject() < 100; //Detected an object less than n centimeters away
+	return this->distanceToObject() > 700; //Detected an object less than n centimeters away
 }
 void ProximitySensor::exec() {
-	//I dunno. Save data locally
+  Serial.print("Detect voltage at ");
+  Serial.print(cm());
+  Serial.print(" or at distance ");
+  Serial.println(distance());
+	dist=cm();
 }
-int ProximitySensor::cm() {
+float ProximitySensor::cm() {
 	int raw=analogRead(_irPin);
 	float voltFromRaw=map(raw, 0, 1023, 0, 5000);
+return voltFromRaw;
 	int puntualDistance;	
 	if (_model==1080) {
 		puntualDistance=27.728*pow(voltFromRaw/1000, -1.2045);

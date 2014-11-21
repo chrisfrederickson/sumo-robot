@@ -1,5 +1,3 @@
-#include <QTRSensors.h>
-#include <ZumoReflectanceSensorArray.h>
 /*
  * Sumo3.ino
  *
@@ -8,18 +6,30 @@
  */
 #include <Arduino.h>
 #include <avr32/io.h>
+#include <ZumoReflectanceSensorArray.h>
+#include <QTRSensors.h>
 #include "MotorDriver.h"
 #include "SensorsArray.h"
 #include "Sniper.h"
+#include "WallAvoidance.h"
+#include "IR.h"
+#include "Button.h"
+#include "MotionSensor.h"
+#include "ProximitySensor.h"
 
 #define TICK 100
 
 using namespace std;
 SensorsArray sensors;
 MotorDriver motors;
+boolean q;
 // Pin 13 has an LED connected on most Arduino boards.
 // give it a name:
 int led = 13;
+
+//STRATEGIES
+WallAvoidance wallAvoidance = WallAvoidance(sensors, motors);
+Sniper sniper = Sniper(sensors, motors);
 void setup()
 {
 	  /* add setup code here, setup code runs once when the processor starts */
@@ -28,25 +38,53 @@ void setup()
           pinMode(led, OUTPUT); 
           Serial.begin(9600);
           Serial.println("Good morning world.");
+          
 }
 void loop() {
-	sensors.exec();
 	int mills = millis();
 	//Every tick
-        digitalWrite(led, HIGH); 
-	while((mills - sensors.getTick()) < TICK) {
-          Serial.print(mills);
+	while((sensors.getTick() - mills) < TICK) {
+          /*Serial.print(sensors.getTick());
           Serial.print("  ");
-          Serial.print(sensors.getTick());
+          Serial.print(mills);          
           Serial.print("  ");
-          Serial.println(mills-sensors.getTick());
-		sensors.setTick(millis());
+          Serial.println(sensors.getTick()-mills);*/
+          sensors.setTick(millis());
 	}
+        sensors.exec();
+        
+        /*if(q == true) {
         digitalWrite(led, LOW); 
-	motors.turnCW(100);
-        Serial.println(sensors.getButton().isPressed());
+        q=false;
+        } else if(q==false){
+        digitalWrite(led,HIGH);
+        q=true;
+        }*/
+        if(sensors.getIR().detectLeft())
+        digitalWrite(led, HIGH);
+        else
+        digitalWrite(led, LOW);
+	
+        //Serial.print("Button Data: ");
+        //Serial.println(sensors.getButton().isPressed());
+        Serial.print("Proximity Data: ");
         Serial.println(sensors.getProximitySensor().distanceToObject());
+        Serial.print("IR Data: ");
+        Serial.print(sensors.getIR().getLeftIR());
+        Serial.print(" ");
+        Serial.println(sensors.getIR().getRightIR());
+        Serial.print("Tick: ");
         Serial.println(sensors.getTick());
+        
+        wallAvoidance.updateSensors(sensors);
+      	sniper.updateSensors(sensors);
+	//Go through strategies in most->least priority order
+        /*if(wallAvoidance.shouldRun())
+          wallAvoidance.activate();
+	else if(sniper.shouldRun())
+          sniper.activate();
+        */
+        motors.goForward(100);
 	motors.exec();
 }
 
@@ -55,15 +93,12 @@ void loop2()
 
 	  /* add main program code here, this code starts again each time it ends */
 	//Refresh sensor data
-	sensors.exec();
+	
     int mills = millis();
 	//Every tick
-	while((mills - sensors.getTick()) < TICK) {
+	while((sensors.getTick()-mills) < TICK) {
 		sensors.setTick(millis());	
 	}
-	Sniper sniper = Sniper(sensors, motors);
-	//Go through strategies in most->least priority order
-	if(sniper.shouldRun())
-		sniper.activate();
+
 	motors.exec();
 }

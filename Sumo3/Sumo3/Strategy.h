@@ -19,6 +19,7 @@ public:
 	bool shouldRun();
 	void activate();
 	void tapIn();
+        void updateSensors(SensorsArray s);
 	Strategy( const Strategy &c );
 protected:
 private:	

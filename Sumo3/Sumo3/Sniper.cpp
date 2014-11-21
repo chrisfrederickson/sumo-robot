@@ -15,9 +15,7 @@ Sniper::Sniper(SensorsArray s, MotorDriver m): Strategy(s, m)
 	this->m = m;
 } //Sniper
 bool Sniper::shouldRun() {
-	//Use sensor data to determine if this strategy should run;
-	//If so, return true
-	return true;
+	return this->s.getProximitySensor().detectObject();
 }
 void Sniper::activate() {
 	//Override this to send commands to the system.
@@ -25,7 +23,7 @@ void Sniper::activate() {
 	if(this->s.getProximitySensor().detectObject()) {
 		//Gun it
 		this->m.goForward(100);
-	} else {
+	} else if(this->s.getTick() < 5000) {
 		this->m.turnCCW(100);
 	}
 }
